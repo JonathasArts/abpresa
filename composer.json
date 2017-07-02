@@ -1,0 +1,25 @@
+{
+    "name": "ABPRESA",
+    "description": "Ambiente de Boas Práticas Reconfiguráveis em Engenharia de Software Ágil",
+    "authors": [
+        {
+            "name": "Jonathas Almeida",
+            "email": "jonathasarts@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8",
+        "slim/slim": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "config": {
+        "bin-dir": "./bin"
+    }
+}

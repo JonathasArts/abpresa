@@ -1,0 +1,60 @@
+/*Style para detalhes da aplicação*/
+.btn-menu{
+	font-size: 1.5em;
+	text-align: center;
+	color: #eee;
+}
+
+#i_keywords{
+	background-color: #ddd;
+}
+
+#select-tags{
+	width: 100%;
+}
+
+.title-col-pratica{
+	font-size: .8em;
+	font-weight: bold;
+	color: #bad363;
+	text-align: center;
+}
+
+.link-arq{
+	text-decoration: none !important;
+}
+
+.pagination-mine>li>a, .pagination-mine>li>span {
+	color: #89AC10;
+}
+
+.pagination-mine>li>a:hover, .pagination-mine>li>span:hover{
+	color: #5e750b;
+}
+
+.pagination-mine>li>a:focus, .pagination-mine>li>span:focus{
+	color: #5e750b;
+}
+
+.pagination-mine>.active>a{
+	background-color: #89AC10;
+	border-color: #89AC10;
+}
+
+.pagination-mine>.active>a:hover{
+	background-color: #5e750b;
+	border-color: #5e750b;
+}
+
+.pagination-mine>.active>a:focus{
+	background-color: #5e750b;
+	border-color: #5e750b;
+}
+
+.btn-menu-list{
+	min-width: 10em;
+}
+
+th {
+   cursor: pointer;
+}
