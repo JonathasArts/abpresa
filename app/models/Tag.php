@@ -11,18 +11,19 @@ class Tag {
 	function Tag(){}
 
 	// Persistir tag
-	public static function save(){
+	public static function save($descricao_tag){
         $DB = new DB;
-        $sql = "INSERT INTO tags(descricao_tag) VALUES(:descricao_tag)";
+        $sql = "INSERT INTO tags(descricao_tag) VALUES(upper(:descricao_tag))";
         $stmt = $DB->prepare($sql);
 
-        $stmt->bindParam(':descricao_tag', $this->descricao_tag);
+        $stmt->bindParam(':descricao_tag', $descricao_tag);
  
         if ($stmt->execute()){
+            $_SESSION['ultimo_id'] = $DB->lastInsertId();
             return true;
         }
         else{
-            echo "Erro ao persistir tag".$this->descricao_tag;
+            echo "Erro ao persistir tag".$descricao_tag;
             print_r($stmt->errorInfo());
             return false;
         }
@@ -34,8 +35,20 @@ class Tag {
 	}
 
 	// Excluir tag do Banco
-	public static function delete(){
+	public static function remove($id){
+        $DB = new DB;
+        $sql = "DELETE FROM tags WHERE id = :id";
+        $stmt = $DB->prepare($sql);
+        
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 
+        if ($stmt->execute()){
+            return true;
+        } else{
+            echo "Erro ao remover tags ".$id;
+            print_r($stmt->errorInfo());
+            return false;
+        }
 	}
 
 	// Buscar uma ou todas as tags no banco
@@ -66,6 +79,26 @@ class Tag {
         }
 	}
 
+    // Buscar uma ou todas as tags no banco
+	public static function selectByDesc($desc = null){
+        
+        $sql = sprintf("SELECT * FROM tags WHERE descricao_tag = upper(:desc)"); 
+
+        $DB = new DB; 
+        $stmt = $DB->prepare($sql);
+        $stmt->bindParam(':desc', $desc);
+        $stmt->execute();
+
+        $tags = $stmt->fetchAll(\PDO::FETCH_OBJ);
+ 		
+ 		// if (empty($tags)){
+        //     return null;
+        // }else {
+            return $tags[0];
+        // }
+
+	}
+
     // Buscar todas as tags de uma pratica no banco
     public static function selectTagsByPratica($id_pratica){
         
@@ -81,8 +114,67 @@ class Tag {
 
         $tags = $stmt->fetchAll(\PDO::FETCH_OBJ);
         
-        // Retorna um array de objetos pratica
+        // Retorna um array de objetos tags pratica
         return $tags;
+    }
+
+    // Associa tag a pratica
+    public static function assocTagPratica($id, $pratica_id){
+
+        $DB = new DB;
+        $sql = "INSERT INTO praticas_tags(praticas_id, tags_id) VALUES(:pratica_id, :id)";
+        $stmt = $DB->prepare($sql);
+
+        $stmt->bindParam(':pratica_id', $pratica_id);
+        $stmt->bindParam(':id', $id);
+ 
+        if ($stmt->execute()){
+            return true;
+        }
+        else{
+            echo "Erro ao persistir tag";
+            print_r($stmt->errorInfo());
+            return false;
+        }
+    }
+
+    // Desassocia tag a pratica
+    public static function desassocTagPratica($id, $pratica_id){
+
+        $DB = new DB;
+        $sql = "DELETE FROM praticas_tags WHERE praticas_id = :pratica_id AND tags_id = :id";
+        $stmt = $DB->prepare($sql);
+
+        $stmt->bindParam(':pratica_id', $pratica_id);
+        $stmt->bindParam(':id', $id);
+ 
+        if ($stmt->execute()){
+            return true;
+        }
+        else{
+            echo "Erro ao persistir tag";
+            print_r($stmt->errorInfo());
+            return false;
+        }
+    }
+
+    // verifica as tags que não estão ligadas a nenhuma pratica no banco
+    public static function verificaTags($id){
+        
+        $sql = sprintf("SELECT * FROM praticas_tags WHERE tags_id = :id"); 
+
+        $DB = new DB; 
+        $stmt = $DB->prepare($sql);
+        $stmt->bindParam(':id', $id);
+ 
+        $stmt->execute();
+        $tags = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        
+        if (!empty($tags)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

@@ -46,6 +46,7 @@ class AppController {
             'numpage'   => $numpage, 
             'qtdepages' => $qtdepages,
             'qtdereg'   => count($allPraticas),
+            'msg' => $msg,
         ]);
     }
 

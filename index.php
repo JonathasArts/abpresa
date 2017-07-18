@@ -91,6 +91,51 @@ $app->get('/usuarios/', function (){
 /*==========================================================================================*/ 
 
 
+// Carrega o formulário de cadastro de Conteudo "/abpresa/Conteudo/add/"
+$app->get('/conteudo/add/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->create();  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de cadastro de Conteudo "/abpresa/Conteudo/add/"
+$app->post('/conteudo/add/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->store();  // Chama o método do Controler
+    }
+});
+
+// Carrega o formulário de edição de Conteudo "/abpresa/Conteudo/edit/"
+$app->get('/conteudo/edit/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->edit($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de edição de Conteudo "/abpresa/Conteudo/edit/"
+$app->post('/conteudo/edit/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->update();  // Chama o método do Controler
+    }
+});
+
+// Remover uma Categoria
+$app->get('/conteudo/remove/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+     
+        $ConteudoController = new \App\Controllers\ConteudoController;
+        $ConteudoController->remove($id);
+    }
+});
 
 
 /*__________________________________________________________________________________________*/

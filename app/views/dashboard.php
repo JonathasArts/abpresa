@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="text-left" style="margin-bottom:2em">
-                        <a href="/abpresa/praticas/add" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova Pratica</a>
+                        <a href="/abpresa/conteudo/add/" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova Pratica</a>
                     </div>
 
                     <div class="content">
@@ -83,8 +83,9 @@
                                             </td>
                                             <td class="text-center" style="width: 8em">
                                                 <a href="" class="col-xs-4" style="color: #65a186" title="ADD Arquivo"><i class="fa fa-plus"></i></a>
-                                                <a href="" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
-                                                <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a>
+                                                <a href="/abpresa/conteudo/edit/<?= $pratica->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
+                                                <!-- <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> -->
+                                                <a href="#" class="col-xs-4" data-pathid="/abpresa/conteudo/remove/<?= $pratica->id ?>" data-msg="Pratica <?= $pratica->titulo_pratica ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         

@@ -16,7 +16,7 @@
         <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
         <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-github"></i></a></li>
     </ul> -->
-    <span class="copyRights">&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</span>
+    <span class="copyRights"><small>&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</small></span>
 </header>
 <!-- END template/sidebar.html -->
 

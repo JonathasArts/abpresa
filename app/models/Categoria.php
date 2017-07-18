@@ -50,11 +50,6 @@ class Categoria {
 
 	// Excluir categoria do Banco
 	public static function remove($id){
-        // valida o ID
-        if (empty($id)){
-            echo "ID não informado";
-            exit;
-        }
 
         $DB = new DB;
         $sql = "DELETE FROM categorias WHERE id = :id";
