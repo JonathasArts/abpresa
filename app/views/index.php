@@ -30,11 +30,11 @@
                         
                         <!-- Select Categorias -->
                         <div class="form-group col-sm-6 col-xs-12">
-                            <label for="categoria">Categoria: </label>
-                            <select name="categoria" class="form-control">
-                            <option selected="selected">Escolha uma Categoria</option>
+                            <label for="categoria_id">Categoria: </label>
+                            <select name="categoria_id" class="form-control">
+                            <option value="" selected="selected">Escolha uma Categoria</option>
                             <?php foreach ($categorias as $categoria) : ?>
-                                <option value="<?= $categoria->titulo_categoria ?>"><?= $categoria->titulo_categoria ?></option>
+                                <option value="<?= $categoria->id ?>"><?= $categoria->titulo_categoria ?></option>
                             <?php endforeach ?>
                             </select>
                         </div>

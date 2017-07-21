@@ -73,10 +73,10 @@ class Pratica {
 
 	// Buscar uma ou todas as praticas no banco
 	public static function selectAll($id = null){
-		$where = ''; 
+		$where = "";
 
         if (!empty($id)){ 
-            $where = 'WHERE id = :id';
+            $where = "WHERE id = :id";
         } 
         
         $sql = sprintf("SELECT * FROM praticas %s ORDER BY titulo_pratica ASC", $where); 
@@ -100,20 +100,48 @@ class Pratica {
 	}
 
     // Buscar palavra-chave no titulo das praticas no banco
-    public static function find($keyword, $categoria, $tags){
+    public static function find($keyword=null, $categoria, $tags){
         $where = "";
 
         if(!empty($keyword)){
             $where = "WHERE UPPER(p.titulo_pratica) LIKE UPPER('%".$keyword."%')";
         }
+
+        if(!empty($categoria)){
+            if(empty($where)){
+                $where .= "WHERE UPPER(c.titulo_categoria) LIKE UPPER('".$categoria->titulo_categoria."')";
+            } else {
+                $where .= " AND UPPER(c.titulo_categoria) LIKE UPPER('".$categoria->titulo_categoria."')";
+            }
+        }
+
+        if(!empty($tags)){
+            $w = "";
+            if(empty($where)){
+                $w .= "WHERE ";
+                foreach ($tags as $t) {
+                    $w .= "UPPER(t.descricao_tag) LIKE UPPER('".$t."') AND ";
+                }
+            } else {
+                 $w .= " AND (";
+                foreach ($tags as $t) {
+                    $w .= "UPPER(t.descricao_tag) LIKE UPPER('".$t."') OR ";
+                }
+            }
+            $where .= substr($w, 0, strlen($w)-4);
+            $where .= ")";
+        }
         
-        $sql = sprintf("SELECT * FROM praticas p %s ORDER BY titulo_pratica ASC", $where); 
+        $sql = sprintf("SELECT DISTINCT p.* FROM praticas p 
+                    INNER JOIN categorias c ON c.id = p.categorias_id
+                    INNER JOIN praticas_tags pt ON pt.praticas_id = p.id
+                    INNER JOIN tags t ON t.id = pt.tags_id %s
+                    ORDER BY titulo_pratica ASC", $where);
 
         $DB = new DB; 
         $stmt = $DB->prepare($sql);
  
         $stmt->execute();
-
         $praticas = $stmt->fetchAll(\PDO::FETCH_OBJ);
         
         // Retorna um array de objetos pratica

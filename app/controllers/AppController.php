@@ -57,27 +57,31 @@ class AppController {
         
         // pega os dados do formuário
         $palavra = isset($_POST['palavra-chave']) ? $_POST['palavra-chave'] : null;
-        $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : null;
-        $tags = isset($_POST['tags']) ? $_POST['tags'] : null;
-        // pegar aquivos/link-arquivo para enviar aqui
+        $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : null;
+        $tags_buscadas = isset($_POST['tags']) ? $_POST['tags'] : null;
+        
+        // $arquivos; // pegar aquivos/link-arquivo para enviar aqui
+        $categorias_das_praticas = Array();
+        $categoria_buscada = Categoria::selectAll($categoria_id);
+        $categoria_buscada = (sizeof($categoria_buscada) == 1) ? $categoria_buscada : null ;
 
-        $praticas = Pratica::find($palavra, $categoria, $tags);
-        $arquivos;
-        $tags;
-        $categorias;
+        $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);
 
         foreach ($praticas as $p) {
-            $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
+            // $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
             $tags[$p->id] = Tag::selectTagsByPratica($p->id);
-            $categorias[$p->id] = Categoria::selectByPratica($p->id);
+            $categorias_das_praticas[$p->id] = Categoria::selectByPratica($p->id);
         }
 
         \App\View::make('resultado', [ 
+            'page' => $page,
             'palavra' => $palavra,
-        	'praticas' => $praticas, 
-            'arquivos' => $arquivos,
+            'categoria_buscada' => $categoria_buscada,
+            'tags_buscadas' => $tags_buscadas,
+            'categorias_das_praticas' => $categorias_das_praticas,
             'tags' => $tags,
-            'categorias' => $categorias,
+            'praticas' => $praticas,
+            // 'arquivos' => $arquivos,
         	// pegar aquivos/link-arquivo para enviar aqui
         ]);
     }
