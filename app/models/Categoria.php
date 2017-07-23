@@ -94,6 +94,22 @@ class Categoria {
         }
 	}
 
+    // Buscar uma ou todas as categorias no banco
+	public static function selectByTitulo($titulo = null){
+		
+        $sql = sprintf("SELECT * FROM categorias WHERE UPPER(titulo_categoria) = UPPER(:titulo)"); 
+
+        $DB = new DB; 
+        $stmt = $DB->prepare($sql);
+
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->execute();
+
+        $categorias = $stmt->fetchAll(\PDO::FETCH_OBJ);
+ 		
+        return $categorias[0];
+	}
+
     // Buscar categori de uma pratica no banco
     public static function selectByPratica($id_pratica){
         

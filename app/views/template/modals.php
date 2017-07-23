@@ -24,7 +24,7 @@
     <div id="modal-cancel" class="iziModal text-center"></div>
 </div>
 
-<!-- MODAL CANCELAR -->
+<!-- MODAL ERRO -->
 <div class="row">
-    <div id="modal-msg" class="iziModal text-center"></div>
+    <div id="modal-err" class="iziModal text-center" style="color:#555 !important"></div>
 </div>

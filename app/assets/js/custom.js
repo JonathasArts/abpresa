@@ -117,11 +117,11 @@ function alertMSG(msg=null){
 }
 
 function alertERR(msg=null){
-    $("#modal-msg").iziModal({
-        headerColor: '#FFD700',
+    $("#modal-err").iziModal({
+        headerColor: '#e5c100',
         closeButton: false,
         width: 400,
-        timeout: 2000,
+        timeout: 1500,
         pauseOnHover: true,
         timeoutProgressbar: true,
         iconClass: 'fontawesome',
@@ -129,7 +129,7 @@ function alertERR(msg=null){
         attached: 'bottom'
     });
    
-    $('#modal-msg').iziModal('setTitle', msg);
+    $('#modal-err').iziModal('setTitle', msg);
     
-    $('#modal-msg').iziModal('open');
+    $('#modal-err').iziModal('open');
 }

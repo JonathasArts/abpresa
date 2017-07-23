@@ -38,10 +38,17 @@ class CategoriaController {
         // pega os dados do formuário
         $titulo_categoria = isset($_POST['titulo_categoria']) ? $_POST['titulo_categoria'] : null;
 
-        if (Categoria::save($titulo_categoria)) {
-            $_SESSION['msg'] = "Categoria ".$titulo_categoria." criada!";
-            header('Location: /abpresa/categorias/');
-            exit;
+        $cTeste = Categoria::selectByTitulo($titulo_categoria);
+        if (!empty($cTeste)){
+            $_SESSION['msgE'] = "Categoria ".$titulo_categoria." já existente!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
+        } else {
+            if (Categoria::save($titulo_categoria)) {
+                $_SESSION['msg'] = "Categoria ".$titulo_categoria." criada!";
+                header('Location: /abpresa/categorias/');
+                exit;
+            }
         }
     }
 
