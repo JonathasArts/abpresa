@@ -159,22 +159,24 @@ class Tag {
     }
 
     // verifica as tags que não estão ligadas a nenhuma pratica no banco
-    public static function verificaTags($id){
+    public static function verificaTags(){
         
-        $sql = sprintf("SELECT * FROM praticas_tags WHERE tags_id = :id"); 
+        $sql = sprintf("SELECT t.* FROM tags t WHERE NOT EXISTS
+                        (SELECT tags_id FROM praticas_tags tp WHERE t.id = tp.tags_id);"); 
 
         $DB = new DB; 
         $stmt = $DB->prepare($sql);
-        $stmt->bindParam(':id', $id);
  
         $stmt->execute();
-        $tags = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        $tagsSoltas = $stmt->fetchAll(\PDO::FETCH_OBJ);
         
-        if (!empty($tags)){
-            return true;
-        }else {
-            return false;
+        foreach ($tagsSoltas as $t) {
+            if(!Tag::remove($t->id)){
+                return false;
+            }
         }
+
+        return true;
     }
 
 }

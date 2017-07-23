@@ -11,7 +11,7 @@ class ConteudoController {
         $page = "dashboard";
         // subpage aqui
         $pratica = Pratica::selectAll($id);
-        $categoria_pratica = Categoria::selectAll($pratica->id);
+        $categoria_pratica = Categoria::selectAll($pratica->categorias_id);
         $tags_pratica = Tag::selectTagsByPratica($pratica->id);
 
         \App\View::make('conteudo.show', [
@@ -20,7 +20,7 @@ class ConteudoController {
             'pratica' => $pratica,
             'categoria_pratica' => $categoria_pratica,
             'tags_pratica' => $tags_pratica,
-            ]);
+        ]);
     }
 
     // Exibe o formulário para cadastro de conteudo/Boa pratica
@@ -34,7 +34,7 @@ class ConteudoController {
             'errormsg' => $errormsg,
             'categorias' => $categorias,
             'msg' => $msg,
-            ]);
+        ]);
     }
 
     // Processa o formulário de cadastro de conteudo/Boa Pratica
@@ -116,14 +116,35 @@ class ConteudoController {
             echo $var;
         } else {
             if (Pratica::update($id, $titulo_conteudo, $categoria, $descricao_conteudo)) {
-                $tags_atual;
                 $tags_pratica = Tag::selectTagsByPratica($id);
+                
                 foreach ($tags_pratica as $t) {
-                    $tags_atual[] = $t->descricao_tag;
+                    if (Tag::desassocTagPratica($t->id, $id)){}
                 }
 
-                // comparar as tags enviadas com as associadas a pratica
-                // verificar forma para edição das tags
+                foreach ($tags as $tag) {
+                    $t = Tag::selectByDesc($tag);
+                    // caso a tag já exista
+                    if ($t == null) {
+                        // cadastra a tag
+                        if (Tag::save($tag)) {
+                            $tag_id = $_SESSION['ultimo_id'];
+
+                            // associar tags a pratica
+                            if(Tag::assocTagPratica($tag_id, $id)) {}
+                        }                    
+                    } else {
+                        // associar tags a pratica
+                        if(Tag::assocTagPratica($t->id, $id)) {}
+                    }
+                }
+
+                // remove as tags soltas
+                if(!Tag::verificaTags()){
+                    $_SESSION['msgE'] = "Erro ao editar Boa Pratica";
+                    $var = "<script>javascript:history.back(-1)</script>";
+                    echo $var;
+                }
 
                 // upload de arquivos
                 // associar arquivos a pratica
