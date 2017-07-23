@@ -73,7 +73,6 @@ $(document).ready(function() {
 
 });
 
-
 // Instancia e Carrega o modal de confirmação de exclusão
 function modalRemove(bt){
     
@@ -95,7 +94,7 @@ function modalRemove(bt){
     // $('#modal-remove #bt-modal-confirm').attr("href", path_id);
     $('#modal-ok #bt-md-ok').attr("href", path_id);
 
-    event.preventDefault();
+    // event.preventDefault();
     $('#modal-remove').iziModal('open');
 }
 

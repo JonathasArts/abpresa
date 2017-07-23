@@ -59,7 +59,7 @@
                                         <tr>
                                             <td><?= $pratica->id ?></td>
                                             <td>
-                                                <a href="" id="verPratica" title="Visualizar">
+                                                <a href="/abpresa/conteudo/show/<?= $pratica->id ?>" id="verPratica" title="Visualizar">
                                                     <?= $pratica->titulo_pratica ?>
                                                 </a>
                                             </td>

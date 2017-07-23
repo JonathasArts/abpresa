@@ -90,6 +90,16 @@ $app->get('/usuarios/', function (){
 /*                                      PRATICAS                                            */
 /*==========================================================================================*/ 
 
+// Exibe as informações do Conteudo "/abpresa/Conteudo/show/"
+$app->get('/conteudo/show/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->show($id);  // Chama o método do Controler
+    }
+});
 
 // Carrega o formulário de cadastro de Conteudo "/abpresa/Conteudo/add/"
 $app->get('/conteudo/add/', function (){

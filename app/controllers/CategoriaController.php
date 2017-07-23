@@ -69,10 +69,17 @@ class CategoriaController {
         $titulo_categoria = isset($_POST['titulo_categoria']) ? $_POST['titulo_categoria'] : null;
         $id_categoria = isset($_POST['id_categoria']) ? $_POST['id_categoria'] : null;
 
-        if (Categoria::update($id_categoria, $titulo_categoria)) {
-            $_SESSION['msg'] =  "Categoria ".$titulo_categoria." atualizada!";
-            header('Location: /abpresa/categorias/');
-            exit;
+        $cTeste = Categoria::selectByTitulo($titulo_categoria);
+        if (!empty($cTeste) && $cTeste->id != $id_categoria){
+            $_SESSION['msgE'] = "Categoria ".$cTeste->titulo_categoria." já existente!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
+        } else {
+            if (Categoria::update($id_categoria, $titulo_categoria)) {
+                $_SESSION['msg'] =  "Categoria ".$titulo_categoria." atualizada!";
+                header('Location: /abpresa/categorias/');
+                exit;
+            }
         }
     }
 

@@ -6,6 +6,23 @@ use \App\Models\Tag;
 
 class ConteudoController { 
 
+    // Exibe as informações do conteudo/Boa pratica
+    public function show($id = null) {
+        $page = "dashboard";
+        // subpage aqui
+        $pratica = Pratica::selectAll($id);
+        $categoria_pratica = Categoria::selectAll($pratica->id);
+        $tags_pratica = Tag::selectTagsByPratica($pratica->id);
+
+        \App\View::make('conteudo.show', [
+            'page' => $page,
+            // subpage aqui
+            'pratica' => $pratica,
+            'categoria_pratica' => $categoria_pratica,
+            'tags_pratica' => $tags_pratica,
+            ]);
+    }
+
     // Exibe o formulário para cadastro de conteudo/Boa pratica
     public function create($msg = null) {
         $page = "dashboard";
@@ -62,7 +79,6 @@ class ConteudoController {
                 header('Location: /abpresa/dashboard/');
                 exit;
             }
-        
         }
     }
 
@@ -93,22 +109,29 @@ class ConteudoController {
         $tags = isset($_POST['tags']) ? explode(',', $_POST['tags']) : null;
         $descricao_conteudo = isset($_POST['descricao_conteudo']) ? $_POST['descricao_conteudo'] : null;
 
-        if (Pratica::update($id, $titulo_conteudo, $categoria, $descricao_conteudo)) {
-            $tags_atual;
-            $tags_pratica = Tag::selectTagsByPratica($id);
-            foreach ($tags_pratica as $t) {
-                $tags_atual[] = $t->descricao_tag;
+        $pTeste = Pratica::selectByTitulo($titulo_conteudo);
+        if (!empty($pTeste) && $pTeste->id != $id){
+            $_SESSION['msgE'] = "Título da Boa Pratica já existente!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
+        } else {
+            if (Pratica::update($id, $titulo_conteudo, $categoria, $descricao_conteudo)) {
+                $tags_atual;
+                $tags_pratica = Tag::selectTagsByPratica($id);
+                foreach ($tags_pratica as $t) {
+                    $tags_atual[] = $t->descricao_tag;
+                }
+
+                // comparar as tags enviadas com as associadas a pratica
+                // verificar forma para edição das tags
+
+                // upload de arquivos
+                // associar arquivos a pratica
+
+                $_SESSION['msg'] =  "Boa Prática ".$titulo_categoria." atualizada!";
+                header('Location: /abpresa/dashboard/');
+                exit;
             }
-
-            // comparar as tags enviadas com as associadas a pratica
-            // verificar forma para edição das tags
-
-            // upload de arquivos
-            // associar arquivos a pratica
-
-            $_SESSION['msg'] =  "Boa Prática ".$titulo_categoria." atualizada!";
-            header('Location: /abpresa/dashboard/');
-            exit;
         }
     }
 
