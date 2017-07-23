@@ -29,3 +29,14 @@
         }
     </script>
 <?php endif ?>
+
+<?php if(!empty($_SESSION['msgE'])) : ?>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                alertERR('<?= $_SESSION['msgE'] ?>');
+            },50);
+        }
+    </script>
+    <?php $_SESSION['msgE'] = ""; ?>
+<?php endif ?>

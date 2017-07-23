@@ -15,9 +15,15 @@
 <!-- views/resultado.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
-        
+                
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+            <a class="breadcrumb-item active" href="/abpresa/pesquisar/">Resultado</a>
+        </nav>
         <header class="page-header text-left" style="padding-left:7em;">
-            
+            <div>
+                <!-- ESPAÇO PARA MAIS FILTROS E/OU LINKS  -->
+            </div>
         </header>
         
         <div class="col-xs-1"></div>
@@ -67,29 +73,44 @@
                 <div class="panel-body" style="background-color:#213435;">
                     <h2 class=" text-center"><span>FILTROS</span></h2>
                     <div class="row">
-                        <div class="col-xs-12" style="margin-bottom:1em;">
-                            <label for="palavra-chave text-left">Palavra-chave: </label>
-                            <input type="text" value="<?php if($palavra != ''){echo $palavra;} ?>" name="palavra-chave" class="form-control">
-                        </div>
-
-                        <div class="col-xs-12" style="margin-bottom:1em;">
-                            <label for="categoria_id">Categoria: </label>
-                            <select name="categoria_id" class="form-control">
-                            <option selected="selected">Escolha uma Categoria</option>
-                            <?php //foreach ($categorias as $categoria) : ?>
-                                <option value="<?= $categoria_buscada->id ?>"><?= $categoria_buscada->titulo_categoria ?></option>
-                            <?php //endforeach ?>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-12" style="margin-bottom:1em;">
-                            <label for="categoria_id">tags: </label>
-                            <div>
-                            <?php foreach ($tags_buscadas as $t) : ?>
-                                    <span>#<?= $t ?> </span><br>
-                                <?php endforeach ?>
+                        <form action="/abpresa/pesquisar/" method="post"> <!-- Buscar Praticas aqui -->
+                            <div class="col-xs-12" style="margin-bottom:1em;">
+                                <label for="palavra-chave text-left">Palavra-chave: </label>
+                                <input type="text" id="i_keywords" name="palavra-chave" class="form-control" value="<?php if($palavra != ''){echo $palavra;} ?>">
                             </div>
-                        </div>
+
+                            <div class="col-xs-12" style="margin-bottom:1em;">
+                                <label for="categoria_id">Categoria: </label>
+                                <select name="categoria_id" class="form-control">
+                                    <?php if (!empty($categoria_buscada)) : ?>
+                                        <option value="<?= $categoria_buscada->id ?>"><?= $categoria_buscada->titulo_categoria ?></option>
+                                    <?php else : ?>
+                                        <option value="" selected="selected">Escolha uma Categoria</option>
+                                    <?php endif ?>
+                                    
+                                    <?php foreach ($categorias as $categoria) : ?>
+                                        <?php if ($categoria_buscada->titulo_categoria != $categoria->titulo_categoria) : ?>
+                                            <option value="<?= $categoria->id ?>"><?= $categoria->titulo_categoria ?></option>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+
+                                </select>
+                            </div>
+
+                            <div class="col-xs-12" style="margin-bottom:1em;">
+                                <label for="categoria_id">tags: </label>
+                                <div>
+                                <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">
+                                    <?php foreach ($allTags as $tag) : ?>
+                                        <?php if (in_array($tag, $tags_buscadas, true)) : ?>
+                                            <option value="<?= $tag->descricao_tag ?>" selected><?= $tag->descricao_tag ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $tag->descricao_tag ?>"><?= $tag->descricao_tag ?></option>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

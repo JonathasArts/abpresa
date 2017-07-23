@@ -95,7 +95,7 @@ $app->get('/usuarios/', function (){
 $app->get('/conteudo/add/', function (){
     if(verificaLogin()){
         $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
-        $ConteudoController->create();  // Chama o método do Controler
+        $ConteudoController->create(getMensagem());  // Chama o método do Controler
     }
 });
 

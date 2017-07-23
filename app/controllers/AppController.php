@@ -54,6 +54,8 @@ class AppController {
     // Exibe a página de Resultado...  
     public function pesquisar() {
         $page = "resultado";
+        $categorias = Categoria::selectAll();
+        $allTags = Tag::selectAll();
         
         // pega os dados do formuário
         $palavra = isset($_POST['palavra-chave']) ? $_POST['palavra-chave'] : null;
@@ -81,6 +83,8 @@ class AppController {
             'categorias_das_praticas' => $categorias_das_praticas,
             'tags' => $tags,
             'praticas' => $praticas,
+            'categorias' => $categorias,
+        	'allTags' => $allTags,
             // 'arquivos' => $arquivos,
         	// pegar aquivos/link-arquivo para enviar aqui
         ]);

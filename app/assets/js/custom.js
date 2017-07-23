@@ -115,3 +115,21 @@ function alertMSG(msg=null){
     
     $('#modal-msg').iziModal('open');
 }
+
+function alertERR(msg=null){
+    $("#modal-msg").iziModal({
+        headerColor: '#FFD700',
+        closeButton: false,
+        width: 400,
+        timeout: 2000,
+        pauseOnHover: true,
+        timeoutProgressbar: true,
+        iconClass: 'fontawesome',
+        icon: 'fa fa-check',
+        attached: 'bottom'
+    });
+   
+    $('#modal-msg').iziModal('setTitle', msg);
+    
+    $('#modal-msg').iziModal('open');
+}

@@ -7,14 +7,15 @@ use \App\Models\Tag;
 class ConteudoController { 
 
     // Exibe o formulário para cadastro de conteudo/Boa pratica
-    public function create() {
+    public function create($msg = null) {
         $page = "conteudo";
         $categorias = Categoria::selectAll();
         $errormsg = "";
         \App\View::make('conteudo.create', [
-            'page' => $page, 
+            'page' => $page,
             'errormsg' => $errormsg,
             'categorias' => $categorias,
+            'msg' => $msg,
             ]);
     }
 
@@ -26,32 +27,41 @@ class ConteudoController {
         $tags = isset($_POST['tags']) ? explode(',', $_POST['tags']) : null;
         $descricao_conteudo = isset($_POST['descricao_conteudo']) ? $_POST['descricao_conteudo'] : null;
 
-        if (Pratica::save($titulo_conteudo, $categoria, $descricao_conteudo)) {
-            $pratica_id = $_SESSION['ultimo_id']; // retornar ultimo id inserido
+        $pTeste = Pratica::selectByTitulo($titulo_conteudo);
+        if (!empty($pTeste)){
+            $_SESSION['msgE'] = "Título da Boa Pratica já existente!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
+        } else {
 
-            foreach ($tags as $tag) {
-                $t = Tag::selectByDesc($tag);
-                // caso a tag já exista
-                if ($t == null) {
-                    // cadastra a tag
-                    if (Tag::save($tag)) {
-                        $tag_id = $_SESSION['ultimo_id'];
+            if (Pratica::save($titulo_conteudo, $categoria, $descricao_conteudo)) {
+                $pratica_id = $_SESSION['ultimo_id']; // retornar ultimo id inserido
 
+                foreach ($tags as $tag) {
+                    $t = Tag::selectByDesc($tag);
+                    // caso a tag já exista
+                    if ($t == null) {
+                        // cadastra a tag
+                        if (Tag::save($tag)) {
+                            $tag_id = $_SESSION['ultimo_id'];
+
+                            // associar tags a pratica
+                            if(Tag::assocTagPratica($tag_id, $pratica_id)) {}
+                        }                    
+                    } else {
                         // associar tags a pratica
-                        if(Tag::assocTagPratica($tag_id, $pratica_id)) {}
-                    }                    
-                } else {
-                    // associar tags a pratica
-                    if(Tag::assocTagPratica($t->id, $pratica_id)) {}
+                        if(Tag::assocTagPratica($t->id, $pratica_id)) {}
+                    }
                 }
+
+                // upload de arquivos
+                // associar arquivos a pratica
+
+                $_SESSION['msg'] = "Boa Prática ".$titulo_conteudo." cadastrada!";
+                header('Location: /abpresa/dashboard/');
+                exit;
             }
-
-            // upload de arquivos
-            // associar arquivos a pratica
-
-            $_SESSION['msg'] = "Boa Prática ".$titulo_conteudo." cadastrada!";
-            header('Location: /abpresa/dashboard/');
-            exit;
+        
         }
     }
 

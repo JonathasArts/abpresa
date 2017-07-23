@@ -99,6 +99,21 @@ class Pratica {
         }
 	}
 
+    // Buscar uma praticas pelo título
+	public static function selectByTitulo($titulo = null){
+        
+        $sql = sprintf("SELECT * FROM praticas WHERE UPPER(titulo_pratica) = UPPER(:titulo)"); 
+
+        $DB = new DB; 
+        $stmt = $DB->prepare($sql);
+        $stmt->bindParam(':titulo', $titulo);
+ 
+        $stmt->execute();
+        $praticas = $stmt->fetchAll(\PDO::FETCH_OBJ);
+ 		
+        return $praticas[0];
+	}
+
     // Buscar palavra-chave no titulo das praticas no banco
     public static function find($keyword=null, $categoria, $tags){
         $where = "";
