@@ -12,5 +12,5 @@
     </ul>
     <span class="copyRights">&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</span>
 </header>
-<button class="toggleOptionPanel"><i class="fa fa-align-right"></i></button>
+<!-- <button class="toggleOptionPanel"><i class="fa fa-align-right"></i></button> -->
 <!-- END template/sidebar.html -->

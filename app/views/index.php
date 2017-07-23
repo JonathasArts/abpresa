@@ -7,14 +7,27 @@
             <div class="col-xs-10">
                 <a class="breadcrumb-item active" href="/abpresa/">Home</a>
             </div>
+            
+            
             <div class="col-xs-2 dropdown text-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
-                <ul class="dropdown-menu text-center">
-                    <li><a href="#">Meus Dados</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="/abpresa/logout/">Sair</a></li>
-                </ul>
+            
+                <?php if(!empty($_SESSION['username'])) : ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="#">Meus Dados</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/logout/">Sair</a></li>
+                    </ul>
+                <?php else : ?>
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="/abpresa/admin/">LOGIN ADMINISTRAÇÃO</a></li>
+                    </ul>
+                <?php endif ?>
+                
             </div>
+
         </nav><hr style="margin-bottom:-1em;"/>
 
         <header class="page-header text-center extra-top-pad">

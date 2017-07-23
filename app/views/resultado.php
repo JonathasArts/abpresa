@@ -61,8 +61,9 @@
 
                 <?php endforeach ?>
             <?php else : ?>
-            <div>
-                Sem Resultados...
+            <div class="text-center">
+                <h1 class="text-danger"><i class="fa fa-frown-o"></i></h1>
+                <h2 class="text-danger"><strong>Infelizmente não encontramos resultados para esta busca.</strong></h2>
             </div>
             <?php endif ?>
         </div>
