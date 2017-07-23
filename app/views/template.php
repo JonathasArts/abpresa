@@ -18,6 +18,8 @@
         <?php else : ?>
             <!-- template/sidebar.admin.php -->
             <?php include_once("template/sidebar.admin.php") ?>
+            <!-- template/optionsPanel.php -->
+            <?php include_once("template/optionsPanel.php") ?>
         
         <main class="contentArea" style="padding-left: 160px !important;">
         

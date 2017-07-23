@@ -8,7 +8,8 @@ class ConteudoController {
 
     // Exibe o formulário para cadastro de conteudo/Boa pratica
     public function create($msg = null) {
-        $page = "conteudo";
+        $page = "dashboard";
+        // subpage aqui
         $categorias = Categoria::selectAll();
         $errormsg = "";
         \App\View::make('conteudo.create', [
@@ -67,7 +68,8 @@ class ConteudoController {
 
     // Exibe o formulário para edição de conteudo/Boa Pratica
     public function edit($id) {
-        $page = "conteudo";
+        $page = "dashboard";
+        // subpage aqui
         $errormsg = "";
         $pratica = Pratica::selectAll($id);
         $categorias = Categoria::selectAll();

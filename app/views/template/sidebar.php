@@ -10,12 +10,6 @@
         <li><a href="" class="btn-menu">SOBRE O GPES</a></li>
         <li><a href="" class="btn-menu">CONTATO</a></li>
     </ul>
-    <!-- <ul class="socialLinks">
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-home"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-github"></i></a></li>
-    </ul> -->
     <span class="copyRights">&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</span>
 </header>
 <button class="toggleOptionPanel"><i class="fa fa-align-right"></i></button>

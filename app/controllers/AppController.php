@@ -64,10 +64,12 @@ class AppController {
         
         // $arquivos; // pegar aquivos/link-arquivo para enviar aqui
         $categorias_das_praticas = Array();
+        $tags = Array();
+
         $categoria_buscada = Categoria::selectAll($categoria_id);
         $categoria_buscada = (sizeof($categoria_buscada) == 1) ? $categoria_buscada : null ;
 
-        $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);
+        $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);//die(var_dump($praticas));
 
         foreach ($praticas as $p) {
             // $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);

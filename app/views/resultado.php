@@ -14,8 +14,7 @@
 
 <!-- views/resultado.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
-    <div class="row">
-                
+    <div class="row"> 
         <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
             <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
             <a class="breadcrumb-item active" href="/abpresa/pesquisar/">Resultado</a>
@@ -70,8 +69,8 @@
         
         <div class="col-xs-4">
             <div class="panel panel-default">
-                <div class="panel-body" style="background-color:#213435;">
-                    <h2 class=" text-center"><span>FILTROS</span></h2>
+                <div class="panel-body" style="background-color:#eee;">
+                    <h2 class=" text-center"><span></span></h2>
                     <div class="row">
                         <form action="/abpresa/pesquisar/" method="post"> <!-- Buscar Praticas aqui -->
                             <div class="col-xs-12" style="margin-bottom:1em;">
@@ -83,7 +82,8 @@
                                 <label for="categoria_id">Categoria: </label>
                                 <select name="categoria_id" class="form-control">
                                     <?php if (!empty($categoria_buscada)) : ?>
-                                        <option value="<?= $categoria_buscada->id ?>"><?= $categoria_buscada->titulo_categoria ?></option>
+                                        <option value="" >Escolha uma Categoria</option>
+                                        <option value="<?= $categoria_buscada->id ?>" selected="selected"><?= $categoria_buscada->titulo_categoria ?></option>
                                     <?php else : ?>
                                         <option value="" selected="selected">Escolha uma Categoria</option>
                                     <?php endif ?>
@@ -102,13 +102,16 @@
                                 <div>
                                 <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">
                                     <?php foreach ($allTags as $tag) : ?>
-                                        <?php if (in_array($tag, $tags_buscadas, true)) : ?>
+                                        <?php if (in_array($tag->descricao_tag, $tags_buscadas)) : ?>
                                             <option value="<?= $tag->descricao_tag ?>" selected><?= $tag->descricao_tag ?></option>
                                         <?php else : ?>
                                             <option value="<?= $tag->descricao_tag ?>"><?= $tag->descricao_tag ?></option>
                                         <?php endif ?>
                                     <?php endforeach ?>
                                 </select>
+                            </div>
+                            <div class="col-xs-12 text-center" style="padding:2em 0 0 0">
+                                <button type="submit" name="" class="btn btn-block"><i class="fa fa-search"></i>&nbsp &nbsp Buscar</button>
                             </div>
                         </form>
                     </div>

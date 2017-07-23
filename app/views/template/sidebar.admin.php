@@ -6,16 +6,11 @@
     </div>
     <a href="#" class="nav-trigger"><i class="fa fa-navicon"></i></a>
      <ul class="main-nav">
-        <li class="active"><a href="/abpresa/dashboard/" class="btn-menu">DASHBOARD</a></li>
-        <li><a href="" class="btn-menu">...</a></li>
-        <li><a href="" class="btn-menu">...</a></li>
+        <li <?php if($page==='home'){echo "class='active'";} ?> ><a href="/abpresa/" class="btn-menu">HOME</a></li>
+        <li <?php if($page==='dashboard'){echo "class='active'";} ?> ><a href="/abpresa/dashboard/" class="btn-menu">DASHBOARD</a></li>
+        <!-- <li><a href="" class="btn-menu">...</a></li>
+        <li><a href="" class="btn-menu">...</a></li> -->
     </ul>
-    <!-- <ul class="socialLinks">
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-home"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-github"></i></a></li>
-    </ul> -->
     <span class="copyRights"><small>&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</small></span>
 </header>
 <!-- END template/sidebar.html -->

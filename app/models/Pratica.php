@@ -137,14 +137,15 @@ class Pratica {
                 foreach ($tags as $t) {
                     $w .= "UPPER(t.descricao_tag) LIKE UPPER('".$t."') AND ";
                 }
+                $where .= substr($w, 0, strlen($w)-4);
             } else {
                  $w .= " AND (";
                 foreach ($tags as $t) {
                     $w .= "UPPER(t.descricao_tag) LIKE UPPER('".$t."') OR ";
                 }
+                $where .= substr($w, 0, strlen($w)-4);
+                $where .= ")";
             }
-            $where .= substr($w, 0, strlen($w)-4);
-            $where .= ")";
         }
         
         $sql = sprintf("SELECT DISTINCT p.* FROM praticas p 

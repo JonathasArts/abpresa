@@ -3,9 +3,11 @@
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
         
-        <div>
-            <div class="col-xs-10 text-left" style="padding-left: 7em">
-                <h6><strong>Bem Vindo <span><?= $_SESSION['nome'] ?></span>!</strong></h6>
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/categorias/">Categoria</a>
             </div>
             <div class="col-xs-2 dropdown text-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
@@ -15,7 +17,7 @@
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
             </div>
-        </div>
+        </nav>
 
         <div class="text-center">
             <hr>

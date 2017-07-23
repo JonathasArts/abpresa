@@ -8,7 +8,8 @@ class CategoriaController {
 
     // Exibe a lista de categorias
     public function categorias($msg = null) {
-        $page = "categorias";
+        $page = "dashboard";
+        // subpage aqui
         $allCategorias = Categoria::selectAll();
 
         $limit = 7; // Quantidade de registros por página
@@ -28,7 +29,8 @@ class CategoriaController {
 
     // Exibe o formulário para cadastro de categoria
     public function create() {
-        $page = "categorias";
+        $page = "dashboard";
+        // subpage aqui
         $errormsg = "";
         \App\View::make('categorias.create', ['page' => $page, 'errormsg' => $errormsg,]);
     }
@@ -54,7 +56,8 @@ class CategoriaController {
 
     // Exibe o formulário para edição de categoria
     public function edit($id) {
-        $page = "categorias";
+        $page = "dashboard";
+        // subpage aqui
         $errormsg = "";
         $categoria = Categoria::selectAll($id);
         \App\View::make('categorias.edit', ['page' => $page, 'errormsg' => $errormsg, 'categoria' => $categoria,]);
