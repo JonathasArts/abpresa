@@ -13,7 +13,7 @@ class Session {
     public static function login($username, $password) {
 
         // $usuario = new Usuario();
-        $usuario = Usuario::findByUsername($username);
+        $usuario = Usuario::selectByUsername($username);
 
         if (!empty($usuario) && $usuario->password == $password){
             // session_start inicia a sessão

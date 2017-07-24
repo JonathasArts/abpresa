@@ -106,7 +106,8 @@ class Pratica {
 
         $DB = new DB; 
         $stmt = $DB->prepare($sql);
-        $stmt->bindParam(':titulo', $titulo);
+        $tituloSemEspacos = trim($titulo);
+       @$stmt->bindParam(':titulo', trim($tituloSemEspacos));
  
         $stmt->execute();
         $praticas = $stmt->fetchAll(\PDO::FETCH_OBJ);

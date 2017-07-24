@@ -32,6 +32,7 @@ $app->post('/pesquisar/', function (){
     $AppController = new \App\Controllers\AppController; // Instancia o Controler
     $AppController->pesquisar();  // Chama o método do Controler
 });
+
 /*__________________________________________________________________________________________*/
 
 
@@ -43,7 +44,7 @@ $app->post('/pesquisar/', function (){
 // Carrega a Página de login para a URL "/abpresa/admin/"
 $app->get('/admin/', function (){
     $SessionController = new \App\Controllers\SessionController; // Instancia o Controler
-    $SessionController->login();  // Chama o método do Controler
+    $SessionController->login(getMensagem());  // Chama o método do Controler
 });
 
 // Realiza o login do usuario administrador "/abpresa/admin/"
@@ -77,10 +78,57 @@ $app->get('/dashboard/', function (){
 
 // Lista de Usuários Cadastrados "/abpresa/usuarios/"
 $app->get('/usuarios/', function (){
-    $UserController = new \App\Controllers\UserController; // Instancia o Controler
-    $UserController->index();  // Chama o método do Controler
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->usuarios();  // Chama o método do Controler
 });
 
+// Carrega a Página de criar conta de usuario "/abpresa/cadastro/"
+$app->get('/cadastro/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->cadastro();  // Chama o método do Controler
+});
+
+// Carrega a Página de cadastro de usuario "/abpresa/usuario/add/"
+$app->get('/usuarios/add/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->create();  // Chama o método do Controler
+});
+
+// Realiza o login do usuario administrador "/abpresa/usuario/add/"
+$app->post('/usuarios/add/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->store();  // Chama o método do Controler
+});
+
+// Carrega o formulário de edição de usuario "/abpresa/usuario/edit/"
+$app->get('/usuarios/edit/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->edit($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de edição de usuario "/abpresa/usuario/edit/"
+$app->post('/usuarios/edit/', function (){
+    if(verificaLogin()){
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->update();  // Chama o método do Controler
+    }
+});
+
+// Remover um usuario
+$app->get('/usuarios/remove/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+     
+        $UsuarioController = new \App\Controllers\UsuarioController;
+        $UsuarioController->remove($id);
+    }
+});
 
 /*__________________________________________________________________________________________*/
 

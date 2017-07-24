@@ -14,24 +14,3 @@
     <span class="copyRights"><small>&copy; 2017 - GPES-IFPB <br/> Todos os direitos reservados</small></span>
 </header>
 <!-- END template/sidebar.html -->
-
-<?php if(!empty($msg)) : ?>
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                alertMSG('<?= $msg ?>');
-            },50);
-        }
-    </script>
-<?php endif ?>
-
-<?php if(!empty($_SESSION['msgE'])) : ?>
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                alertERR('<?= $_SESSION['msgE'] ?>');
-            },50);
-        }
-    </script>
-    <?php $_SESSION['msgE'] = ""; ?>
-<?php endif ?>

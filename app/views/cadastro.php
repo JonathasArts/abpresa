@@ -6,7 +6,7 @@
         <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
             <div class="col-xs-10">
                 <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
-                <a class="breadcrumb-item active" href="/abpresa/admin/">Login</a>
+                <a class="breadcrumb-item active" href="/abpresa/cadastro/">cadastro</a>
             </div>
             
             
@@ -34,35 +34,46 @@
         </nav><hr style="margin-bottom:-1em;"/>
 
         <header class="page-header text-center extra-top-pad">
-            <h1><span>Login</span></h1>
+            <h1><span>Criar Conta</span></h1>
         </header>
         
-        <div class="col-xs-4"></div>
+        <div class="col-xs-1"></div>
         
-        <div class="col-xs-4">
-            <form method="POST" action="/abpresa/admin/">
+        <div class="col-xs-10">
+            <form method="POST" action="/abpresa/usuarios/add/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
-                    <div class="content">
-                        <div class="form-group">
+                    <div class="row content">
+                        <div class="form-group col-xs-12">
+                            <label>Nome do usuário</label>
+                            <input type="text" name="nome" placeholder="nome completo" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group col-xs-12">
                             <label>Login</label>
                             <input type="text" name="username" placeholder="usuario" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-group col-xs-6">
                             <label>Senha</label>
                             <input type="password" name="password" placeholder="senha" class="form-control" required>
                         </div>
-                        <div class="form-group" style="margin-top: -1em; margin-bottom: 2em;">
-                            <small><a href="">Esqueceu a Senha?</a></small>
+                        <div class="form-group col-xs-6">
+                            <label>Confirmação de Senha</label>
+                            <input type="password" name="confirmPassword" placeholder="Confirmar Senha" class="form-control" required>
                         </div>
+
+                        <input type="hidden" name="tipo_usuario" value="NORMAL" required>
+
                     </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-lg btn-block">Entrar</button>
+                    <div class="row text-right" style="padding-top:2em;padding-right:1em;">
+                        <a href="/abpresa/admin/" class="btn btn-lg">Cancelar</a>
+                        <button type="submit" class="btn btn-lg">Salvar</button>
                     </div>
                 </div>
             </form>                
         </div>
 
-        <div class="col-xs-4"></div>
+        <div class="col-xs-1"></div>
 
     </div>
 </div><!--contenAreaInner-->

@@ -22,7 +22,9 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="/abpresa/admin/">LOGIN ADMINISTRAÇÃO</a></li>
+                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/admin/">Login</a></li>
                     </ul>
                 <?php endif ?>
                 
