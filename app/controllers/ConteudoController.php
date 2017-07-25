@@ -45,7 +45,7 @@ class ConteudoController {
         $tags = isset($_POST['tags']) ? explode(',', $_POST['tags']) : null;
         $descricao_conteudo = isset($_POST['descricao_conteudo']) ? $_POST['descricao_conteudo'] : null;
 
-        $pTeste = Pratica::selectByTitulo($titulo_conteudo);
+        $pTeste = @Pratica::selectByTitulo($titulo_conteudo);
         if (!empty($pTeste)){
             $_SESSION['msgE'] = "Título da Boa Pratica já existente!";
             $var = "<script>javascript:history.back(-1)</script>";
@@ -109,7 +109,7 @@ class ConteudoController {
         $tags = isset($_POST['tags']) ? explode(',', $_POST['tags']) : null;
         $descricao_conteudo = isset($_POST['descricao_conteudo']) ? $_POST['descricao_conteudo'] : null;
 
-        $pTeste = Pratica::selectByTitulo($titulo_conteudo);
+        $pTeste = @Pratica::selectByTitulo($titulo_conteudo);
         if (!empty($pTeste) && $pTeste->id != $id){
             $_SESSION['msgE'] = "Título da Boa Pratica já existente!";
             $var = "<script>javascript:history.back(-1)</script>";

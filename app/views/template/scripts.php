@@ -8,3 +8,4 @@
 <script type="text/javascript" src="<?php echo $path ?>/app/assets/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="<?php echo $path ?>/app/assets/js/iziModal.js"></script>
 <script type="text/javascript" src="<?php echo $path ?>/app/assets/js/bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="<?php echo $path ?>/app/assets/js/jquery.fancybox.js"></script>

@@ -13,7 +13,8 @@
             <div class="col-xs-2 dropdown text-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
-                    <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Meus Dados</a></li>
+                    <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -43,6 +44,10 @@
                                 }
                             ?>
                             </strong>
+                            <div class="row text-right" style="padding: 0 1em;">
+                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
+                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
+                            </div>
                         </div>
                         <div class="col-xs-6 col-md-12">
                             <hr/>
@@ -56,18 +61,21 @@
                         <h1 class="text-center"><small><strong>Arquivos</strong></small></h1>
                         <!-- foreach dos arquivos  -->
                         <div class="col-xs-6 col-md-4">
-                            <a href="#" class="thumbnail">
+                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
                                 <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
+                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
                             </a>
                         </div>
                         <div class="col-xs-6 col-md-4">
-                            <a href="#" class="thumbnail">
+                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
                                 <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
+                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
                             </a>
                         </div>
                         <div class="col-xs-6 col-md-4">
-                            <a href="#" class="thumbnail">
+                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
                                 <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
+                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
                             </a>
                         </div>
                         <!-- END foreach dos arquivos  -->
@@ -81,15 +89,14 @@
 
         <div class="row">
             <div class="col-xs-1"></div>
-                <div class="col-xs-5">
-                    Comentários...
+                <div class="col-xs-5 text-center">
+                    Adicionar opção de comentários
                 </div>
-                <div class="col-xs-5">
-                    Boas praticas relacionadas...
+                <div class="col-xs-5 text-center">
+                    Lista de Boas praticas relacionadas
                 </div>
             <div class="col-xs-1"></div>
         </div>
-
         
     </div>
 </div><!--contenAreaInner-->

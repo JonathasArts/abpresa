@@ -26,7 +26,8 @@
                 <?php if(!empty($_SESSION['username'])) : ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Meus Dados</a></li>
+                        <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
+                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/logout/">Sair</a></li>
                     </ul>
@@ -57,7 +58,9 @@
                 <div class="panel panel-default">
                     <div class="panel-body" style="background-color:#eeeeee;">
                         <div class="col-xs-9">
-                            <h2><span><?= $p->titulo_pratica ?></span></h2>
+                            <a href="/abpresa/resultado/show/<?= $p->id ?>" style="text-decoration:none;" title="Mais Detalhes">
+                                <h2><span><?= $p->titulo_pratica ?></span></h2>
+                            </a>
                             <div style="margin-top:-1rem;">
                                 <strong style="font-size:1.3em;color:#213435;"><?= $categorias_das_praticas[$p->id][0]->titulo_categoria ?> </strong>
                                 <small style="font-style: italic;">

@@ -70,21 +70,28 @@ class UsuarioController {
             $var = "<script>javascript:history.back(-1)</script>";
             echo $var;
         } else {
-            $uTeste = Usuario::selectByUsername($username);
+            $uTeste = @Usuario::selectByUsername($username);
             if (!empty($uTeste)) {
                 $_SESSION['msgE'] = "Username ".$username." indisponível!";
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
             } else {
-                if (Usuario::save($nome, $username, $email, $password, $tipo_usuario)) {
-                    if (!empty($_SESSION['username'])){
-                        $_SESSION['msg'] = "Usuário ".$nome." cadastrado!";
-                        header('Location: /abpresa/usuarios/');
-                        exit;
-                    } else {
-                        $_SESSION['msg'] = "Conta cadastrada com sucesso!";
-                        header('Location: /abpresa/admin/');
-                        exit;
+                $uTesteMail = @Usuario::selectByEmail($email);
+                if (!empty($uTesteMail)) {
+                    $_SESSION['msgE'] = "Email ".$email." indisponível!";
+                    $var = "<script>javascript:history.back(-1)</script>";
+                    echo $var;
+                } else {
+                    if (Usuario::save($nome, $username, $email, $password, $tipo_usuario)) {
+                        if (!empty($_SESSION['username'])){
+                            $_SESSION['msg'] = "Usuário ".$nome." cadastrado!";
+                            header('Location: /abpresa/usuarios/');
+                            exit;
+                        } else {
+                            $_SESSION['msg'] = "Conta cadastrada com sucesso!";
+                            header('Location: /abpresa/admin/');
+                            exit;
+                        }
                     }
                 }
             }
@@ -108,20 +115,27 @@ class UsuarioController {
         $email = isset($_POST['email']) ? $_POST['email'] : null;
         $tipo_usuario = isset($_POST['tipo_usuario']) ? $_POST['tipo_usuario'] : null;
        
-        $uTeste = Usuario::selectByUsername($username);
+        $uTeste = @Usuario::selectByUsername($username);
         if (!empty($uTeste) && $uTeste->id != $id){
             $_SESSION['msgE'] = "Username ".$username." indisponível!";
             $var = "<script>javascript:history.back(-1)</script>";
             echo $var;
         } else {
-            if (Usuario::update($id, $nome, $username, $email, $tipo_usuario)) {
-                $_SESSION['msg'] = "Usuário ".$nome." atualizado!";
-                header('Location: /abpresa/usuarios/');
-                exit;                    
-            } else {
-                $_SESSION['msgE'] = "Erro ao atualizar usuário!";
+            $uTesteMail = @Usuario::selectByEmail($email);
+            if (!empty($uTesteMail)) {
+                $_SESSION['msgE'] = "Email ".$email." indisponível!";
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
+            } else {
+                if (Usuario::update($id, $nome, $username, $email, $tipo_usuario)) {
+                    $_SESSION['msg'] = "Usuário ".$nome." atualizado!";
+                    header('Location: /abpresa/usuarios/');
+                    exit;                    
+                } else {
+                    $_SESSION['msgE'] = "Erro ao atualizar usuário!";
+                    $var = "<script>javascript:history.back(-1)</script>";
+                    echo $var;
+                }
             }
         }
     }

@@ -54,6 +54,24 @@ class Usuario{
 
         return $usuarios[0];
     }
+
+
+    // Buscar um usuario por username no banco 
+    public static function selectByEmail($email){
+
+        $sql = sprintf("SELECT * FROM usuarios WHERE email = :email");
+
+        $DB = new DB; 
+
+        $stmt = $DB->prepare($sql);
+        $stmt->bindParam(':email', $email);
+
+        $stmt->execute();
+
+        $usuarios = $stmt->FetchAll(\PDO::FETCH_OBJ);
+
+        return $usuarios[0];
+    }
  
 
     // Salva no banco de dados um novo usuário

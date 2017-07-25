@@ -40,7 +40,7 @@ class CategoriaController {
         // pega os dados do formuário
         $titulo_categoria = isset($_POST['titulo_categoria']) ? $_POST['titulo_categoria'] : null;
 
-        $cTeste = Categoria::selectByTitulo($titulo_categoria);
+        $cTeste = @Categoria::selectByTitulo($titulo_categoria);
         if (!empty($cTeste)){
             $_SESSION['msgE'] = "Categoria ".$titulo_categoria." já existente!";
             $var = "<script>javascript:history.back(-1)</script>";
@@ -69,7 +69,7 @@ class CategoriaController {
         $titulo_categoria = isset($_POST['titulo_categoria']) ? $_POST['titulo_categoria'] : null;
         $id_categoria = isset($_POST['id_categoria']) ? $_POST['id_categoria'] : null;
 
-        $cTeste = Categoria::selectByTitulo($titulo_categoria);
+        $cTeste = @Categoria::selectByTitulo($titulo_categoria);
         if (!empty($cTeste) && $cTeste->id != $id_categoria){
             $_SESSION['msgE'] = "Categoria ".$cTeste->titulo_categoria." já existente!";
             $var = "<script>javascript:history.back(-1)</script>";
