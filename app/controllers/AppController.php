@@ -21,7 +21,6 @@ class AppController {
         ]);
     }
 
-
     // Exibe a página index [home]
     public function dashboard($msg = null) {
         $page = "dashboard";
@@ -50,7 +49,6 @@ class AppController {
         ]);
     }
 
-
     // Exibe a página de Resultado...  
     public function pesquisar() {
         $page = "resultado";
@@ -69,13 +67,26 @@ class AppController {
         $categoria_buscada = Categoria::selectAll($categoria_id);
         $categoria_buscada = (sizeof($categoria_buscada) == 1) ? $categoria_buscada : null ;
 
-        $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);//die(var_dump($praticas));
+        $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);
 
         foreach ($praticas as $p) {
             // $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
             $tags[$p->id] = Tag::selectTagsByPratica($p->id);
             $categorias_das_praticas[$p->id] = Categoria::selectByPratica($p->id);
         }
+
+        $return = Array();
+        $return['page'] = $page;
+        $return['palavra'] = $palavra;
+        $return['categoria_buscada'] = $categoria_buscada;
+        $return['tags_buscadas'] = $tags_buscadas;
+        $return['categorias_das_praticas'] = $categorias_das_praticas;
+        $return['tags'] = $tags;
+        $return['praticas'] = $praticas;
+        $return['categorias'] = $categorias;
+        $return['allTags'] = $allTags;
+
+        $_SESSION['return'] = $return;
 
         \App\View::make('resultado', [ 
             'page' => $page,
@@ -92,6 +103,41 @@ class AppController {
         ]);
     }
  
-	//
+	// Exibe as informações do conteudo/Boa pratica
+    public function show($id = null) {
+        $page = "resultado";
+        // subpage aqui
+        $pratica = Pratica::selectAll($id);
+        $categoria_pratica = Categoria::selectAll($pratica->categorias_id);
+        $tags_pratica = Tag::selectTagsByPratica($pratica->id);
+
+        \App\View::make('resultado.show', [
+            'page' => $page,
+            // subpage aqui
+            'pratica' => $pratica,
+            'categoria_pratica' => $categoria_pratica,
+            'tags_pratica' => $tags_pratica,
+        ]);
+    }
+
+    // Retorna ao resultado da pesquisa
+    public function returnResult() {
+
+        $return = $_SESSION['return'];
+
+        \App\View::make('resultado', [ 
+            'page' => $return['page'],
+            'palavra' => $return['palavra'],
+            'categoria_buscada' => $return['categoria_buscada'],
+            'tags_buscadas' => $return['tags_buscadas'],
+            'categorias_das_praticas' => $return['categorias_das_praticas'],
+            'tags' => $return['tags'],
+            'praticas' => $return['praticas'],
+            'categorias' => $return['categorias'],
+        	'allTags' => $return['allTags'],
+            // 'arquivos' => $arquivos,
+        	// pegar aquivos/link-arquivo para enviar aqui
+        ]);
+    }
 	
 }

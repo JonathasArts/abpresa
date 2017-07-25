@@ -2,7 +2,24 @@
 <!-- views/categorias.create.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
-        
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Boas Praticas</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/conteudo/edit/<?= $pratica->id ?>">Editar</a>
+            </div>
+            
+            <div class="col-xs-2 dropdown text-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
+                <ul class="dropdown-menu text-center">
+                    <li><a href="#">Meus Dados</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/abpresa/logout/">Sair</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <header class="page-header text-center" style="margin-top:-.4em">
             <div class="row">
                 <div class="col-xs-2"></div>
@@ -16,9 +33,7 @@
         <div class="col-xs-10">
             <form method="POST" action="/abpresa/conteudo/edit/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
-                    <div>
-                        <?= $errormsg ?>
-                    </div>
+                    
                     <div class="content">
                         <div class="form-group col-xs-12">
                             <label for="titulo_conteudo">Titulo</label>

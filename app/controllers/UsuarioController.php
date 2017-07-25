@@ -57,14 +57,14 @@ class UsuarioController {
             echo $var;
         } else {
             $uTeste = Usuario::selectByUsername($username);
-            if (!empty($uTeste)){
+            if (!empty($uTeste)) {
                 $_SESSION['msgE'] = "Username ".$username." indisponível!";
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
             } else {
                 if (Usuario::save($nome, $username, $password, $tipo_usuario)) {
                     if (!empty($_SESSION['username'])){
-                        $_SESSION['msg'] = "Usuário ".$titulo_categoria." cadastrado!";
+                        $_SESSION['msg'] = "Usuário ".$nome." cadastrado!";
                         header('Location: /abpresa/usuarios/');
                         exit;
                     } else {
@@ -77,42 +77,76 @@ class UsuarioController {
         }
     }
 
-    // Exibe o formulário para edição de categoria
+    // Exibe o formulário para edição de usuario
     public function edit($id) {
         $page = "dashboard";
         // subpage aqui
-        $errormsg = "";
         $usuario = Usuario::selectAll($id);
         \App\View::make('usuarios.edit', ['page' => $page, 'usuario' => $usuario,]);
     }
 
-    // Processa o formulário de edicao de categoria
+    // Processa o formulário de edição de usuario
     public function update() {
         // pega os dados do formuário
         $id = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : null;
         $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
         $username = isset($_POST['username']) ? $_POST['username'] : null;
-        $password = isset($_POST['password']) ? $_POST['password'] : null;
-        $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : null;
         $tipo_usuario = isset($_POST['tipo_usuario']) ? $_POST['tipo_usuario'] : null;
-
-        if ($confirmPassword != $password){
-            $_SESSION['msgE'] = "Senha e Confirmação de senha não conferem!";
+       
+        $uTeste = Usuario::selectByUsername($username);
+        if (!empty($uTeste) && $uTeste->id != $id){
+            $_SESSION['msgE'] = "Username ".$username." indisponível!";
             $var = "<script>javascript:history.back(-1)</script>";
             echo $var;
         } else {
-            $uTeste = Usuario::selectByUsername($username);
-            if (!empty($uTeste) && $uTeste->id != $id){
-                $_SESSION['msgE'] = "Username ".$username." indisponível!";
+            if (Usuario::update($id, $nome, $username, $tipo_usuario)) {
+                $_SESSION['msg'] = "Usuário ".$nome." atualizado!";
+                header('Location: /abpresa/usuarios/');
+                exit;                    
+            } else {
+                $_SESSION['msgE'] = "Erro ao atualizar usuário!";
+                $var = "<script>javascript:history.back(-1)</script>";
+                echo $var;
+            }
+        }
+    }
+
+    // Exibe o formulário para mudança de senha
+    public function mudarSenha($id) {
+        $page = "dashboard";
+        // subpage aqui
+        $usuario = Usuario::selectAll($id);
+        \App\View::make('usuarios.senha', ['page' => $page, 'usuario' => $usuario,]);
+    }
+
+    // Processa o formulário de mudança de senha
+    public function updateSenha() {
+        // pega os dados do formuário
+        $id = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : null;
+        $atual = isset($_POST['atual']) ? $_POST['atual'] : null;
+        $password = isset($_POST['password']) ? $_POST['password'] : null;
+        $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : null;
+        
+        if (Usuario::selectAll($id)->password == $atual) {
+            if ($confirmPassword != $password){
+                $_SESSION['msgE'] = "Senha e Confirmação de senha não conferem!";
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
             } else {
-                if (Usuario::update($id, $nome, $username, $password, $tipo_usuario)) {
-                    $_SESSION['msg'] = "Usuário ".$titulo_categoria." atualizado!";
+                if (Usuario::updateSenha($id, $password)) {
+                    $_SESSION['msg'] = "Senha atualizada!";
                     header('Location: /abpresa/usuarios/');
                     exit;                    
+                } else {
+                    $_SESSION['msgE'] = "Erro ao mudar senha!";
+                    $var = "<script>javascript:history.back(-1)</script>";
+                    echo $var;
                 }
             }
+        } else {
+            $_SESSION['msgE'] = "Senha atual incorreta!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
         }
     }
 
@@ -120,9 +154,13 @@ class UsuarioController {
     public function remove($id) {
         $u = Usuario::selectAll($id);
         if (Usuario::remove($id)) {
-            $_SESSION['msg'] = isset($c) ? "Usuario ".$u->nome." Removido!" : "";
+            $_SESSION['msg'] = isset($u) ? "Usuario ".$u->nome." Removido!" : "";
             header('Location: /abpresa/usuarios/');
             exit;
+        } else {
+            $_SESSION['msgE'] = "Erro ao remover usuário!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
         }
     }
 

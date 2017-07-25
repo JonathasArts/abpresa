@@ -33,6 +33,21 @@ $app->post('/pesquisar/', function (){
     $AppController->pesquisar();  // Chama o método do Controler
 });
 
+// Exibe as informações do Conteudo "/abpresa/Conteudo/show/"
+$app->get('/resultado/show/{id}', function ($request){
+    // pega o ID da URL
+    $id = $request->getAttribute('id');
+    
+    $AppController = new \App\Controllers\AppController; // Instancia o Controler
+    $AppController->show($id);  // Chama o método do Controler
+});
+
+// 
+$app->get('/resultado/return/', function (){
+    $AppController = new \App\Controllers\AppController; // Instancia o Controler
+    $AppController->returnResult();  // Chama o método do Controler
+});
+
 /*__________________________________________________________________________________________*/
 
 
@@ -79,7 +94,7 @@ $app->get('/dashboard/', function (){
 // Lista de Usuários Cadastrados "/abpresa/usuarios/"
 $app->get('/usuarios/', function (){
     $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
-    $UsuarioController->usuarios();  // Chama o método do Controler
+    $UsuarioController->usuarios(getMensagem());  // Chama o método do Controler
 });
 
 // Carrega a Página de criar conta de usuario "/abpresa/cadastro/"
@@ -116,6 +131,25 @@ $app->post('/usuarios/edit/', function (){
     if(verificaLogin()){
         $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
         $UsuarioController->update();  // Chama o método do Controler
+    }
+});
+
+// Carrega o formulário de mudança de senha "/abpresa/usuario/edit/"
+$app->get('/usuarios/edit/senha/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->mudarSenha($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de mudança de senha "/abpresa/usuario/edit/"
+$app->post('/usuarios/edit/senha/', function (){
+    if(verificaLogin()){
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->updateSenha();  // Chama o método do Controler
     }
 });
 
@@ -291,7 +325,7 @@ function verificaLogin(){
 
 // 
 function getMensagem(){
-    $msg = $_SESSION['msg']; // Pega a mensagem de confirmação
+    $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : ""; // Pega a mensagem de confirmação
     $_SESSION['msg'] = ""; // Esvazia a msg na sessão
 
     return $msg;

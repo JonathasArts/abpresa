@@ -8,7 +8,6 @@ class Usuario{
     public $username;
     public $password;
 
-
     // Buscar um ou todos os usuarios no banco 
     public static function selectAll($id = null) { 
         $where = ''; 
@@ -80,7 +79,7 @@ class Usuario{
   
  
     // Altera no banco de dados um usuário
-    public static function update($id, $nome, $username, $password, $tipo_usuario){
+    public static function update($id, $nome, $username, $tipo_usuario){
           
         // insere no banco
         $DB = new DB;
@@ -95,6 +94,26 @@ class Usuario{
             return true;
         }else{
             echo "Erro ao Atualizar usuario: ".$id." - ".$nome;
+            print_r($stmt->errorInfo());
+            return false;
+        }
+    }
+
+
+    // Altera no banco a senha de um usuário
+    public static function updateSenha($id, $password){
+          
+        // insere no banco
+        $DB = new DB;
+        $sql = "UPDATE usuarios SET password = :password WHERE id = :id";
+        $stmt = $DB->prepare($sql);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+ 
+        if ($stmt->execute()){
+            return true;
+        }else{
+            echo "Erro ao Atualizar senha do usuario: ".$id;
             print_r($stmt->errorInfo());
             return false;
         }

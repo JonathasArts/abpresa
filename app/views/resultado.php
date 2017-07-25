@@ -16,8 +16,31 @@
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row"> 
         <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
-            <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
-            <a class="breadcrumb-item active" href="/abpresa/pesquisar/">Resultado</a>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/resultado/return/">Resultado</a>
+            </div>
+            
+            <div class="col-xs-2 dropdown text-right">
+            
+                <?php if(!empty($_SESSION['username'])) : ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="#">Meus Dados</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/logout/">Sair</a></li>
+                    </ul>
+                <?php else : ?>
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/admin/">Login</a></li>
+                    </ul>
+                <?php endif ?>
+                
+            </div>
         </nav>
         <header class="page-header text-left" style="padding-left:7em;">
             <div>
@@ -50,9 +73,9 @@
                         <div class="col-xs-3 text-center">
                             <p class="title-col-pratica">OPÇÕES</p>
                             <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></button>
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Mais Detalhes"><i class="fa fa-eye"></i></button>
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></button>
+                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
+                                <a href="/abpresa/resultado/show/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Mais Detalhes"><i class="fa fa-eye"></i></a>
+                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
                             </div>
                         </div>
 

@@ -1,5 +1,5 @@
 <?php $path = RAIZ_PATH; ?>
-<!-- views/categorias.create.html -->
+<!-- views/usuarios.edit.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
         <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
@@ -7,7 +7,8 @@
                 <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
                 <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
                 <a class="breadcrumb-item" href="/abpresa/usuarios/">Usuários</a> / 
-                <a class="breadcrumb-item active" href="/abpresa/usuarios/add/">Cadastrar</a>
+                <a class="breadcrumb-item" href="/abpresa/usuarios/edit/<?= $usuario->id ?>">Editar</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/usuarios/edit/senha/<?= $usuario->id ?>">Mudar Senha</a>
             </div>
             
             <div class="col-xs-2 dropdown text-right">
@@ -23,42 +24,32 @@
         <header class="page-header text-center extra-top-pad">
             <div class="row">
                 <div class="col-xs-2"></div>
-                <div class="col-xs-8"><h1><span>Cadastrar Usuário</span></h1></div>
+                <div class="col-xs-8"><h1><span>Mudar Senha</span> - <?= $usuario->nome ?></h1></div>
                 <div class="col-xs-2"><a href="/abpresa/usuarios/" class="btn btn-default">Cancelar</a></div>
             </div>
         </header>
         
-        <div class="col-xs-1"></div>
+        <div class="col-xs-2"></div>
         
-        <div class="col-xs-10">
-            <form method="POST" action="/abpresa/usuarios/add/">
+        <div class="col-xs-8">
+            <form method="POST" action="/abpresa/usuarios/edit/senha/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
                     <div class="row content">
                         <div class="form-group col-xs-12">
-                            <label>Nome do usuário</label>
-                            <input type="text" name="nome" placeholder="nome completo" class="form-control" required>
+                            <label>Senha Atual</label>
+                            <input type="password" name="atual" placeholder="Senha Atual" class="form-control" required>
                         </div>
                         
                         <div class="form-group col-xs-12">
-                            <label>Login</label>
-                            <input type="text" name="username" placeholder="usuario" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group col-xs-4">
-                            <label>Tipo de Usuário</label>
-                            <select name="tipo_usuario" class="form-control" style="height: 62px;" required>
-                                <option value="ADM">ADM</option>
-                                <option value="NORMAL">NORMAL</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-xs-4">
                             <label>Senha</label>
-                            <input type="password" name="password" placeholder="senha" class="form-control" required>
+                            <input type="password" name="password" placeholder="Nova Senha" class="form-control" required>
                         </div>
-                        <div class="form-group col-xs-4">
+                        <div class="form-group col-xs-12">
                             <label>Confirmação de Senha</label>
                             <input type="password" name="confirmPassword" placeholder="Confirmar Senha" class="form-control" required>
                         </div>
+
+                        <input type="hidden" name="id_usuario" value="<?= $usuario->id ?>">
 
                     </div>
                     <div class="text-right col-xs-12" style="padding-right: 0;">
@@ -72,9 +63,8 @@
             </form>             
         </div>
 
-        <div class="col-xs-1"></div>
+        <div class="col-xs-2"></div>
 
     </div>
 </div><!--contenAreaInner-->
-<!-- END views/categorias.create.html -->
-    
+<!-- END views/usuarios.edit.html -->

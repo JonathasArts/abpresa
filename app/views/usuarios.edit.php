@@ -1,8 +1,25 @@
 <?php $path = RAIZ_PATH; ?>
-<!-- views/categorias.create.html -->
+<!-- views/usuarios.edit.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
-        
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
+                <a class="breadcrumb-item" href="/abpresa/usuarios/">Usuários</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/usuarios/edit/<?= $usuario->id ?>">Editar</a>
+            </div>
+            
+            <div class="col-xs-2 dropdown text-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
+                <ul class="dropdown-menu text-center">
+                    <li><a href="#">Meus Dados</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/abpresa/logout/">Sair</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <header class="page-header text-center extra-top-pad">
             <div class="row">
                 <div class="col-xs-2"></div>
@@ -14,7 +31,7 @@
         <div class="col-xs-1"></div>
         
         <div class="col-xs-10">
-            <form method="POST" action="/abpresa/usuarios/add/">
+            <form method="POST" action="/abpresa/usuarios/edit/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
                     <div class="row content">
                         <div class="form-group col-xs-12">
@@ -28,21 +45,29 @@
                         </div>
                         
                         <div class="form-group col-xs-6">
-                            <label>Senha</label>
-                            <input type="password" name="password" placeholder="senha" class="form-control" required>
+                            <label>Tipo de Usuário</label>
+                            <select name="tipo_usuario" class="form-control" style="height: 62px;" required>
+                                <?php if ($usuario->tipo_usuario == 'NORMAL') : ?>
+                                    <option value="NORMAL">NORMAL</option>
+                                    <option value="ADM">ADM</option>
+                                <?php else : ?>
+                                    <option value="ADM">ADM</option>
+                                    <option value="NORMAL">NORMAL</option>
+                                <?php endif ?>
+                            </select>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label>Confirmação de Senha</label>
-                            <input type="password" name="confirmPassword" placeholder="Confirmar Senha" class="form-control" required>
+                            <label> </label>
+                            <a href="/abpresa/usuarios/edit/senha/<?= $usuario->id ?>" class="btn btn-lg btn-block">Mudar Senha</a>
                         </div>
 
-                        <input type="hidden" name="tipo_usuario" value="<?= $usuario->id ?>">
-                        <input type="hidden" name="id_usuario" value="<?= $usuario->tipo_usuario ?>">
+                        <input type="hidden" name="id_usuario" value="<?= $usuario->id ?>">
 
                     </div>
-                    <div class="text-right col-xs-12">
+                    <div class="text-right col-xs-12" style="padding-right: 0;">
+                        <hr/>
                         <div class="col-xs-8"></div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-4 text-right" style="padding-right: 0;">
                             <button type="submit" class="btn btn-lg btn-block">Salvar</button>
                         </div>
                     </div>
@@ -54,5 +79,4 @@
 
     </div>
 </div><!--contenAreaInner-->
-<!-- END views/categorias.create.html -->
-    
+<!-- END views/usuarios.edit.html -->
