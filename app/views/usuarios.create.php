@@ -39,9 +39,13 @@
                             <input type="text" name="nome" placeholder="nome completo" class="form-control" required>
                         </div>
                         
-                        <div class="form-group col-xs-12">
+                        <div class="form-group col-xs-6">
                             <label>Login</label>
                             <input type="text" name="username" placeholder="usuario" class="form-control" required>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>email</label>
+                            <input type="email" name="email" placeholder="email@email.com" class="form-control" required>
                         </div>
                         
                         <div class="form-group col-xs-4">

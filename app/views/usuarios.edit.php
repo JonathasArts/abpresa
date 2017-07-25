@@ -39,9 +39,13 @@
                             <input type="text" name="nome" value="<?= $usuario->nome ?>" class="form-control" required>
                         </div>
                         
-                        <div class="form-group col-xs-12">
+                        <div class="form-group col-xs-6">
                             <label>Login</label>
                             <input type="text" name="username" value="<?= $usuario->username ?>" class="form-control" required>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>email</label>
+                            <input type="email" name="email" value="<?= $usuario->email ?>" class="form-control" required>
                         </div>
                         
                         <div class="form-group col-xs-6">

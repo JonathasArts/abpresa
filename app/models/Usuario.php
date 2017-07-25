@@ -57,14 +57,15 @@ class Usuario{
  
 
     // Salva no banco de dados um novo usuário
-    public static function save($nome, $username, $password, $tipo_usuario){
+    public static function save($nome, $username, $email, $password, $tipo_usuario){
 
         // insere no banco
         $DB = new DB;
-        $sql = "INSERT INTO usuarios(nome, username, password, tipo_usuario) VALUES(:nome, :username, :password, :tipo_usuario)";
+        $sql = "INSERT INTO usuarios(nome, username, email, password, tipo_usuario) VALUES(:nome, :username, :email, :password, :tipo_usuario)";
         $stmt = $DB->prepare($sql);
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':tipo_usuario', $tipo_usuario);
  
@@ -79,14 +80,15 @@ class Usuario{
   
  
     // Altera no banco de dados um usuário
-    public static function update($id, $nome, $username, $tipo_usuario){
+    public static function update($id, $nome, $email, $username, $tipo_usuario){
           
         // insere no banco
         $DB = new DB;
-        $sql = "UPDATE usuarios SET nome = :nome, username = :username, tipo_usuario = :tipo_usuario WHERE id = :id";
+        $sql = "UPDATE usuarios SET nome = :nome, username = :username, email = :email, tipo_usuario = :tipo_usuario WHERE id = :id";
         $stmt = $DB->prepare($sql);
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':tipo_usuario', $tipo_usuario);
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
  

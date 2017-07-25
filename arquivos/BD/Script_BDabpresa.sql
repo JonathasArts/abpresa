@@ -18,6 +18,7 @@ CREATE TABLE usuarios (
  nome VARCHAR NOT NULL,
  username VARCHAR NOT NULL,
  password VARCHAR NOT NULL,
+ email VARCHAR NOT NULL,
  tipo_usuario VARCHAR NOT NULL
 );
 
@@ -99,7 +100,7 @@ INSERT INTO praticas_arquivos (id, praticas_id, arquivos_id) VALUES (4, 4, 2);
 INSERT INTO praticas_arquivos (id, praticas_id, arquivos_id) VALUES (5, 5, 2);
 INSERT INTO praticas_arquivos (id, praticas_id, arquivos_id) VALUES (6, 6, 2);
 
-INSERT INTO usuarios (id, nome, username, password, tipo_usuario) VALUES (1, 'Jonathas Almeida', 'jonathas.almeida', 12345, 'ADM');
-INSERT INTO usuarios (id, nome, username, password, tipo_usuario) VALUES (2, 'Alber Jonathas', 'alber.jonathas', 12345, 'NORMAL');
-INSERT INTO usuarios (id, nome, username, password, tipo_usuario) VALUES (3, 'Samyra Almeida', 'samyra.almeida', 12345, 'NORMAL');
-INSERT INTO usuarios (id, nome, username, password, tipo_usuario) VALUES (4, 'Heremita Brasileiro', 'heremita.brasileiro', 12345, 'ADM');
+INSERT INTO usuarios (id, nome, username, email, password, tipo_usuario) VALUES (1, 'Jonathas Almeida', 'jonathas.almeida', 'jonathasarts@gmail.com', 12345, 'ADM');
+INSERT INTO usuarios (id, nome, username, email, password, tipo_usuario) VALUES (2, 'Alber Jonathas', 'alber.jonathas', 'alber.jonathas@gmail.com', 12345, 'NORMAL');
+INSERT INTO usuarios (id, nome, username, email, password, tipo_usuario) VALUES (3, 'Samyra Almeida', 'samyra.almeida', 'samyra.almeida@gmail.com', 12345, 'NORMAL');
+INSERT INTO usuarios (id, nome, username, email, password, tipo_usuario) VALUES (4, 'Heremita Brasileiro', 'heremita.brasileiro', 'heremita.brasileiro@gmail.com', 12345, 'ADM');

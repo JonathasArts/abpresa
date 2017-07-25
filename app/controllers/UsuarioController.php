@@ -47,6 +47,7 @@ class UsuarioController {
         // pega os dados do formuário
         $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
         $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
         $password = isset($_POST['password']) ? $_POST['password'] : null;
         $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : null;
         $tipo_usuario = isset($_POST['tipo_usuario']) ? $_POST['tipo_usuario'] : null;
@@ -62,7 +63,7 @@ class UsuarioController {
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
             } else {
-                if (Usuario::save($nome, $username, $password, $tipo_usuario)) {
+                if (Usuario::save($nome, $username, $email, $password, $tipo_usuario)) {
                     if (!empty($_SESSION['username'])){
                         $_SESSION['msg'] = "Usuário ".$nome." cadastrado!";
                         header('Location: /abpresa/usuarios/');
@@ -91,6 +92,7 @@ class UsuarioController {
         $id = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : null;
         $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
         $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
         $tipo_usuario = isset($_POST['tipo_usuario']) ? $_POST['tipo_usuario'] : null;
        
         $uTeste = Usuario::selectByUsername($username);
@@ -99,7 +101,7 @@ class UsuarioController {
             $var = "<script>javascript:history.back(-1)</script>";
             echo $var;
         } else {
-            if (Usuario::update($id, $nome, $username, $tipo_usuario)) {
+            if (Usuario::update($id, $nome, $username, $email, $tipo_usuario)) {
                 $_SESSION['msg'] = "Usuário ".$nome." atualizado!";
                 header('Location: /abpresa/usuarios/');
                 exit;                    

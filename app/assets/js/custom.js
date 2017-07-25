@@ -27,7 +27,7 @@ $(document).ready(function() {
         sortMultiSortKey: 'altKey' 
     });
     $('#table-usuarios').tablesorter({ 
-        headers: { 4: { sorter: false} },
+        headers: { 5: { sorter: false} },
         sortMultiSortKey: 'altKey' 
     });
 

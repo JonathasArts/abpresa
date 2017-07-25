@@ -47,6 +47,7 @@
                                         <th>ID</th>
                                         <th>NOME</th>
                                         <th>USERNAME</th>
+                                        <th>EMAIL</th>
                                         <th>TIPO USUÁRIO</th>
                                         <th class="text-center">OPÇÕES</th>
                                     </tr>
@@ -62,6 +63,7 @@
                                                 </a>
                                             </td>
                                             <td><?= $usuario->username ?></td>
+                                            <td><?= $usuario->email ?></td>
                                             <td><?= $usuario->tipo_usuario ?></td>
                                             <td class="text-center" style="width: 8em">
                                                 <a href="/abpresa/usuarios/edit/<?= $usuario->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
