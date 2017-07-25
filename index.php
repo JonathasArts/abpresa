@@ -91,6 +91,17 @@ $app->get('/dashboard/', function (){
 /*                                      USUARIOS                                            */
 /*==========================================================================================*/ 
 
+// Exibe as informações do usuario "/abpresa/usuario/show/"
+$app->get('/usuarios/show/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->show($id);  // Chama o método do Controler
+    }
+});
+
 // Lista de Usuários Cadastrados "/abpresa/usuarios/"
 $app->get('/usuarios/', function (){
     $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler

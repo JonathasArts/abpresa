@@ -7,6 +7,19 @@ use \App\Models\Usuario;
 
 class UsuarioController { 
 
+    // Exibe as informações do usuario
+    public function show($id = null) {
+        $page = "dashboard";
+        // subpage aqui
+        $usuario = Usuario::selectAll($id);
+
+        \App\View::make('usuario.show', [
+            'page' => $page,
+            // subpage aqui
+            'usuario' => $usuario,
+        ]);
+    }
+    
     // Exibe a lista de categorias
     public function usuarios($msg = null) {
         $page = "dashboard";

@@ -14,7 +14,7 @@
                 <?php if(!empty($_SESSION['username'])) : ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="#">Meus Dados</a></li>
+                        <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Meus Dados</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/logout/">Sair</a></li>
                     </ul>
