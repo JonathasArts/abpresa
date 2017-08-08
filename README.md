@@ -1,6 +1,6 @@
 ![IFPB Logo](http://joaopessoa.ifpb.edu.br/horario/imagens/logo_campus.png)
 
-#### **Este repositório faz parte do Projeto "Ambiente de Boas Práticas Reconfiguráveis em Engenharia de Software".**####
+#### **Este repositório faz parte do Projeto "Ambiente de Boas Práticas Reconfiguráveis em Engenharia de Software".**
 
 Este projeto faz parte do **Grupo de Pesquisa em Engenharia de Software do IFPB**, Campus João Pessoa.
 
