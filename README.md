@@ -49,7 +49,7 @@ práticas reconfiguráveis de ES para cenários específicos de projetos de soft
 
 ______________________________________________________________________
 
-####**Como implantar o ambiente:**
+#### **Como implantar o ambiente:**
 
 Instalar os softwares:
 
