@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## **Testes** ##
 
 
@@ -50,4 +49,3 @@ Selenium IDE é um ambiente integrado de desenvolvimento para scripts de testes 
 **3.** Selecionar o suite de teste desejada
 
 **4.** Executar os testes.
->>>>>>> 2b49d78270a7e533a82721f66cc740296c9650d0
