@@ -8,7 +8,7 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="../CRUD - USUARIO/CRUD - USUARIO/S06 - cadastrar_usuario.html">S06 - cadastrar_usuario</a></td></tr>
+<tr><td><a href="S06 - cadastrar_usuario.html">S06 - cadastrar_usuario</a></td></tr>
 <tr><td><a href="S06 - DC1 - cadastrar_usuario_email_ja_utilizado.html">S06 - DC1 - cadastrar_usuario_email_ja_utilizado</a></td></tr>
 <tr><td><a href="S06 - DC2 - cadastrar_usuario_username_já_utilizado.html">S06 - DC2 - cadastrar_usuario_username_já_utilizado</a></td></tr>
 <tr><td><a href="S06 - DC3 - cadastrar_usuario_nome_nao_preenchido.html">S06 - DC3 - cadastrar_usuario_nome_nao_preenchido</a></td></tr>
@@ -18,8 +18,8 @@
 <tr><td><a href="S06 - DC7 - cadastrar_usuario_confirmaçao_nao_confere.html">S06 - DC7 - cadastrar_usuario_confirmaçao_nao_confere</a></td></tr>
 <tr><td><a href="S06 - DC8 - cadastrar_usuario_email_invalido.html">S06 - DC8 - cadastrar_usuario_email_invalido</a></td></tr>
 <tr><td><a href="S07 - DC1 - remover_usuario_exclusao_nao_confirmada.html">S07 - DC1 - remover_usuario_exclusao_nao_confirmada</a></td></tr>
-<tr><td><a href="S07 - remover_usuario.html">S07 - remover_usuario</a></td></tr>
 <tr><td><a href="S09 - visualizar_usuario.html">S09 - visualizar_usuario</a></td></tr>
+<tr><td><a href="../../CRUD - CONTEUDO(MATHEUS)/CRUD - CONTEUDO/S07 - remover_usuario.html">S07 - remover_usuario</a></td></tr>
 </tbody></table>
 </body>
 </html>
