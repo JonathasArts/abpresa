@@ -4,11 +4,13 @@ use App\DB;
 
 class Categoria {
 	
-	var $id;
-	var $titulo_categoria;
+	public $id;
+	public $titulo_categoria;
 	
 	// Construtor
-    function Categoria(){}
+    public static function Categoria($titulo=""){
+        $this->titulo_categoria = $titulo;
+    }
 
 	// Persistir categoria
 	public static function save($titulo_categoria){
