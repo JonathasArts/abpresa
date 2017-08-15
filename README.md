@@ -78,24 +78,31 @@ php.ini removendo o ';' nas linhas:
 	/*(OBS. Esses dados são provisórios, para modificar os dados do 
 	banco basta editar o arquivo init.php na raiz da aplicação);*/
 
-7. Rode os scripts de criação e insert dos dados nas tabelas no 
-Banco criado (abpresa). Os scripts estão no diretório do projeto 
-abpresa\arquivos\BD\Script_BDabpresa.sql;
+7. Abra o cmd ou GitBash no diretório do projeto e executo o comando 'php composer.phar update' para atualizar as dependências;
 
-8. Inicie o apache no XAMP e acesse o projeto em 
+8. Ainda no cmd ou GitBash execute os comandos para criação das tabelas e insert dos dados Banco criado (abpresa).
+
+    'bin/phinx migrate -e development'
+    'bin/phinx seed:run -s SeedAbpresa'
+
+9. Inicie o apache no XAMP e acesse o projeto em 
 http://localhost/abpresa/;
 
-9. Pronto!  :).
+10. Pronto!  :).
 
 
 **Documentação**
 
 SLIM PHP 	==> https://www.slimframework.com/
 
-COMPOSER 	==> https://getcomposer.org/download/
+COMPOSER 	==> https://getcomposer.org/download/ ou https://getcomposer.org/doc/03-cli.md
 
 POSTGRESQL 	==> https://www.postgresql.org/
 
 XAMP 		==> https://www.apachefriends.org/pt_br/index.html
+
+PHINX       ==> http://docs.phinx.org/en/latest/index.html
+
+PHPUNIT     ==> https://phpunit.de/documentation.html
 
 --------------------------------------------------------------------
