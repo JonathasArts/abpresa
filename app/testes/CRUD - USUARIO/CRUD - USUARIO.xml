@@ -8,7 +8,7 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="S06 - cadastrar_usuario.html">S06 - cadastrar_usuario</a></td></tr>
+<tr><td><a href="S08 -DC8- alterar_usuario_senhanovaembranco.html">S06 - cadastrar_usuario</a></td></tr>
 <tr><td><a href="S06 - DC1 - cadastrar_usuario_email_ja_utilizado.html">S06 - DC1 - cadastrar_usuario_email_ja_utilizado</a></td></tr>
 <tr><td><a href="S06 - DC2 - cadastrar_usuario_username_já_utilizado.html">S06 - DC2 - cadastrar_usuario_username_já_utilizado</a></td></tr>
 <tr><td><a href="S06 - DC3 - cadastrar_usuario_nome_nao_preenchido.html">S06 - DC3 - cadastrar_usuario_nome_nao_preenchido</a></td></tr>
@@ -19,7 +19,16 @@
 <tr><td><a href="S06 - DC8 - cadastrar_usuario_email_invalido.html">S06 - DC8 - cadastrar_usuario_email_invalido</a></td></tr>
 <tr><td><a href="S07 - DC1 - remover_usuario_exclusao_nao_confirmada.html">S07 - DC1 - remover_usuario_exclusao_nao_confirmada</a></td></tr>
 <tr><td><a href="S09 - visualizar_usuario.html">S09 - visualizar_usuario</a></td></tr>
-<tr><td><a href="../../CRUD - CONTEUDO(MATHEUS)/CRUD - CONTEUDO/S07 - remover_usuario.html">S07 - remover_usuario</a></td></tr>
+<tr><td><a href="S07 - remover_usuario.html">S07 - remover_usuario</a></td></tr>
+<tr><td><a href="S08 - alterar_usuario.html">S08 - alterar_usuario</a></td></tr>
+<tr><td><a href="S08 -DC1- alterar_usuario_email_ja_utilizado.html">S08 -DC1- alterar_usuario_email_ja_utilizado</a></td></tr>
+<tr><td><a href="S08 -DC2- alterar_usuario_username_ja_utilizado.html">S08 -DC2- alterar_usuario_username_ja_utilizado</a></td></tr>
+<tr><td><a href="S08 -DC3- alterar_usuario_nome_nao_preenchido.html">S08 -DC3- alterar_usuario_nome_nao_preenchido</a></td></tr>
+<tr><td><a href="S08 -DC4- alterar_usuario_username_nao_preenchido.html">S08 -DC4- alterar_usuario_username_nao_preenchido</a></td></tr>
+<tr><td><a href="S08 -DC5- alterar_usuario_email_nao_preenchido.html">S08 -DC5- alterar_usuario_email_nao_preenchido</a></td></tr>
+<tr><td><a href="S08 -DC6- alterar_usuario_alterar_senha.html">S08 -DC6- alterar_usuario_alterar_senha</a></td></tr>
+<tr><td><a href="S08 -DC7- alterar_usuario_senhasnaoconferem.html">S08 -DC7- alterar_usuario_senhasnaoconferem</a></td></tr>
+<tr><td><a href="S08 -DC8- alterar_usuario_senhanovaembranco.html">S08 -DC8- alterar_usuario_senhanovaembranco</a></td></tr>
 </tbody></table>
 </body>
 </html>

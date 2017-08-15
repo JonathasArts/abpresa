@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>S05 - visualizar_conteudo</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">S05 - visualizar_conteudo</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/abpresa/dashboard/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Boas Praticas')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=verPratica</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1 &gt; span</td>
+	<td>Padronização de Código</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2 &gt; span</td>
+	<td>XP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col-xs-6.col-md-12 &gt; strong</td>
+	<td>#XP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=p</td>
+	<td>Todos mexem em todos os códigos, todos refatoram e todos trabalham em pares. Assim é interessante mantermos um padrão para termos algo solidificado. Por isso a melhor forma é a equipe definir um padrão de codificação sempre no inicio dos projetos</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1.text-center &gt; small &gt; strong</td>
+	<td>Arquivos</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;...&quot;]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

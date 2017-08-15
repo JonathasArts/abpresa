@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>S08 - alterar_usuario_email_ja_utilizado</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">S08 - alterar_usuario_email_ja_utilizado</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/abpresa/usuarios/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Usuários')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=th.header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=th.header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=i.fa.fa-edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=nome</td>
+	<td>Matheus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=username</td>
+	<td>matheus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>jonathasarts@gmail.com</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=tipo_usuario</td>
+	<td>label=ADM</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cancelar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(.//*[@id='table-usuarios']/tbody/tr[4]/td[3])</td>
+	<td>matheus@gmail.com</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
