@@ -1,6 +1,6 @@
 <?php
 namespace App\Models; 
-use App\DB; 
+use App\DB;
 
 class Categoria {
 	
@@ -8,9 +8,9 @@ class Categoria {
 	public $titulo_categoria;
 	
 	// Construtor
-    public static function Categoria($titulo=""){
-        $this->titulo_categoria = $titulo;
-    }
+    // public static function Categoria($titulo=""){
+    //     $this->titulo_categoria = $titulo;
+    // }
 
 	// Persistir categoria
 	public static function save($titulo_categoria){
