@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="S11 - cadastrar_categoria.html">S11 - cadastrar_categoria</a></td></tr>
+<tr><td><a href="S11 - DC1 - cadastrar_categoria_sem_titulo.html">S11 - DC1 - cadastrar_categoria_sem_titulo</a></td></tr>
+<tr><td><a href="S11 - DC2 - cadastrar_categoria_titulo_já_utilizado.html">S11 - DC2 - cadastrar_categoria_titulo_já_utilizado</a></td></tr>
+<tr><td><a href="S12 - visualizar_categoria.html">S12 - visualizar_categoria</a></td></tr>
+<tr><td><a href="S13 - alterar_categoria.html">S13 - alterar_categoria</a></td></tr>
+<tr><td><a href="S14 - remover_categoria.html">S14 - remover_categoria</a></td></tr>
+</tbody></table>
+</body>
+</html>
