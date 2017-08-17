@@ -1,6 +1,5 @@
 <?php
- 
-namespace app;
+namespace App;
  
 class DB extends \PDO
 {
