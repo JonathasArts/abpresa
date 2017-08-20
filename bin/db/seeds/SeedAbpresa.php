@@ -4,10 +4,6 @@ use Phinx\Seed\AbstractSeed;
 
 class SeedAbpresa extends AbstractSeed {
     /**
-     * Run Method.
-     *
-     * Write your database seeder using this method.
-     *
      * More information on writing seeders is available here:
      * http://docs.phinx.org/en/latest/seeding.html
      */
@@ -26,13 +22,6 @@ class SeedAbpresa extends AbstractSeed {
             array('descricao_tag' => 'REUNIOES'),
             array('descricao_tag' => 'XP'),
             array('descricao_tag' => 'TESTES')
-        );
-
-        // data_tipo_arquivo
-        $data_tipo_arquivo = array(
-            array('descricao_tipo_arquivo' => 'PDF'),
-            array('descricao_tipo_arquivo' => 'PNG'),
-            array('descricao_tipo_arquivo' => 'DOC')
         );
         
         // data_praticas
@@ -110,10 +99,9 @@ class SeedAbpresa extends AbstractSeed {
         
         $categorias = $this->table('categorias');
         $tags = $this->table('tags');
-        $tipo_arquivo = $this->table('tipo_arquivo');
         $praticas = $this->table('praticas');
         $praticas_tags = $this->table('praticas_tags');
-        $praticas_arquivos = $this->table('praticas_arquivos');
+      //   $praticas_arquivos = $this->table('praticas_arquivos');
         $usuarios = $this->table('usuarios');
 
 /*------------------------------------------------------------------*/
@@ -135,10 +123,6 @@ class SeedAbpresa extends AbstractSeed {
         
         // INSERT TAGS   
         $tags->insert($data_tags)
-              ->save();
-
-        // INSERT TIPO_ARQUIVO
-        $tipo_arquivo->insert($data_tipo_arquivo)
               ->save();
         
         // INSERT PRATICAS

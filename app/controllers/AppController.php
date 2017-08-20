@@ -26,7 +26,7 @@ class AppController {
         $page = "dashboard";
         $allPraticas = Pratica::selectAll();
         $categorias = Categoria::selectAll();
-        $tags;
+        $tags = Array();
 
         $limit = 7; // Quantidade de registros por página
         $numpage = isset($_GET['page']) ? $_GET['page'] : 1;

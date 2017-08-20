@@ -87,6 +87,21 @@ $(document).ready(function() {
         }
     });
 
+    $("#upload_add_ed").fileinput({
+        language: "pt-BR",
+        uploadUrl: "http://localhost/abpresa/app/uploads", // server upload action
+        uploadAsync: false,
+        maxFileCount: 10,
+        showBrowse: false,
+        showUpload: false,
+        showUploadedThumbs: false,
+        browseOnZoneClick: true,
+        // allowedPreviewTypes: null, // set to empty, null or false to disable preview for all types
+        fileActionSettings: {
+            showUpload: false
+        }
+    });
+
 });
 
 // Instancia e Carrega o modal de confirmação de exclusão

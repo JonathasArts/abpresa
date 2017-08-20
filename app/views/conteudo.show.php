@@ -45,7 +45,7 @@
                             ?>
                             </strong>
                             <div class="row text-right" style="padding: 0 1em;">
-                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
+                                <a href="/abpresa/conteudo/download/<?= $pratica->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
                                 <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
                             </div>
                         </div>
@@ -68,9 +68,11 @@
                                 <!-- PDF  -->
                                 <?php if ($arquivo->tipo == "PDF") : ?>
                                 
-                                <a class="fancybox" data-fancybox-type="iframe" href="<?= $caminho ?>" style="text-align:center">
+                                <a class="fancybox" target="_blank" data-fancybox-type="iframe" href="<?= $caminho ?>" style="text-align:center">
                                     <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
-                                    <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                    <div class="text-center" style="max-width:15em;font-size:.7em">
+                                        <p style="margin:4px 0;"><?= $arquivo->titulo_arquivo ?></p>
+                                    </div>
                                 </a>
                                 <script>
                                     $(".fancybox").fancybox({
@@ -87,7 +89,9 @@
                                 <!-- Imagem  -->
                                 <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
                                     <img src="<?= $caminho ?>" alt="...">
-                                    <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                    <div class="text-center" style="max-width:15em;font-size:.7em">
+                                        <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                    </div>
                                 </a>
 
                                 <?php endif ?>

@@ -86,7 +86,7 @@ class ConteudoController {
                     // Converte a extensão para minúsculo
                     $extensao = strtolower ($extensao);
 
-                    $novoNome = $titulo_conteudo.'_'.date("Y-m-d_H-i-s_").'_'.$k.'.'.$extensao;
+                    $novoNome = sanitizeString($titulo_conteudo).'_'.date("Y-m-d_H-i-s_").'_'.$k.'.'.$extensao;
                     $destino = $diretorio."\\".$novoNome;
 
                     if (move_uploaded_file($arquivos['tmp_name'][$k], $destino)) {
@@ -140,6 +140,7 @@ class ConteudoController {
         $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : null;
         $tags = isset($_POST['tags']) ? explode(',', $_POST['tags']) : null;
         $descricao_conteudo = isset($_POST['descricao_conteudo']) ? $_POST['descricao_conteudo'] : null;
+        $arquivos = isset($_FILES['arquivos']) ? $_FILES['arquivos'] : null;
 
         $pTeste = @Pratica::selectByTitulo($titulo_conteudo);
         if (!empty($pTeste) && $pTeste->id != $id){
@@ -179,7 +180,34 @@ class ConteudoController {
                 }
 
                 // upload de arquivos
-                // associar arquivos a pratica
+                $diretorio = 'C:\xampp\htdocs\abpresa\app\uploads';
+
+                for ($k = 0; $k < count($arquivos['name']); $k++) {
+                    // Pega a extensão
+                    $extensao = pathinfo ($arquivos['name'][$k], PATHINFO_EXTENSION);
+                    // Converte a extensão para minúsculo
+                    $extensao = strtolower ($extensao);
+
+                    $novoNome = $titulo_conteudo.'_'.date("Y-m-d_H-i-s_").'_'.$k.'.'.$extensao;
+                    $destino = $diretorio."\\".$novoNome;
+
+                    if (move_uploaded_file($arquivos['tmp_name'][$k], $destino)) {
+                        if (Arquivo::save($novoNome, "", $destino, $extensao)) {
+                            $arquivo_id = $_SESSION['ultimo_id']; // retornar ultimo id inserido
+                            
+                            // associar arquivos a pratica
+                            if (Arquivo::assocArqPratica($arquivo_id, $id)){
+                                
+                            }else{
+                                die("erro");
+                            }
+                        }
+                    } else {
+                        // $_SESSION['msgE'] = "ERRO ao realizar upload de arquivos!";
+                        // $var = "<script>javascript:history.back(-1)</script>";
+                        // echo $var;
+                    }
+                }
 
                 $_SESSION['msg'] =  "Boa Prática ".$titulo_categoria." atualizada!";
                 header('Location: /abpresa/dashboard/');
@@ -219,6 +247,41 @@ class ConteudoController {
             header('Location: /abpresa/dashboard/');
             exit;
         }
+    }
+
+    // Exibe o formulário para edição de conteudo/Boa Pratica
+    public function download($id) {
+        $pratica = Pratica::selectAll($id);
+        
+        $fileName  = $pratica->titulo_pratica.'.zip';
+        $path      = 'C:\xampp\htdocs\abpresa\app\uploads';
+        $fullPath  = $path.'\\'.$fileName;
+
+        // Executo a leitura no diretório para coletar os nomes dos arquivos.
+        $arquivos = Arquivo::selectArqsByPratica($id);
+
+        $zip = new \ZipArchive();
+        // Criamos o arquivo e verificamos se ocorreu tudo certo
+        if( $zip->open($fullPath, \ZipArchive::CREATE) ) {
+        
+            // adiciona ao zip todos os arquivos contidos no diretório.
+            foreach($arquivos as $arquivo) {
+                $zip->addFile($arquivo->path_arquivo, $arquivo->titulo_arquivo);
+            }
+            // fechar o arquivo zip após a inclusão dos arquivos desejados
+            $zip->close();
+        }
+
+        // Primeiro nos certificamos de que o arquivo zip foi criado.
+        if(file_exists($fullPath)){
+            // Forçamos o donwload do arquivo.
+            header('Content-Type: application/zip');
+            header('Content-Disposition: attachment; filename="'.$fileName.'"');
+            readfile($fullPath);
+            //removemos o arquivo zip após download
+            unlink($fullPath);
+        }
+
     }
 
 }

@@ -32,7 +32,7 @@
         <div class="col-xs-1"></div>
         
         <div class="col-xs-10">
-            <form method="POST" action="/abpresa/conteudo/edit/">
+            <form method="POST" enctype="multipart/form-data" action="/abpresa/conteudo/edit/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
                     
                     <div class="content">
@@ -68,7 +68,7 @@
 
                         <div class="form-group col-xs-12">
                             <fieldset><legend><label for="" style="font-size:.7em;color:#abafb6;padding-left:1em;">Arquivos</label></legend>
-                                <input id="upload_add" name="arquivos[]" type="file" multiple class="file-loading">
+                                <input id="upload_add_ed" name="arquivos[]" type="file" multiple class="file-loading">
                             </fieldset>
                         </div>
 

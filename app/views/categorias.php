@@ -63,7 +63,7 @@
                                             <td class="text-center" style="width: 8em">
                                                 <a href="/abpresa/categorias/edit/<?= $categoria->id ?>" class="col-xs-6" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
                                                 
-                                                <a href="" class="col-xs-6" data-pathid="/abpresa/categorias/remove/<?= $categoria->id ?>" data-msg="Categoria <?= $categoria->titulo_categoria ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
+                                                <a href="#" class="col-xs-6" data-pathid="/abpresa/categorias/remove/<?= $categoria->id ?>" data-msg="Categoria <?= $categoria->titulo_categoria ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         
