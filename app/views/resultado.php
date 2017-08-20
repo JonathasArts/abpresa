@@ -142,7 +142,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-xs-12" style="margin-bottom:1em;">
+                            <div class="col-xs-12 dropdown-menu-tag" style="margin-bottom:1em;">
                                 <label for="categoria_id">tags: </label>
                                 <div>
                                 <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">

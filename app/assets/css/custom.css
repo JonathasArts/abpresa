@@ -63,8 +63,8 @@ th {
 	text-decoration:none !important;
 }
 
-.multiselect-conatiner, .dropdown-menu{
+.dropdown-menu-tag .dropdown-menu{
 	max-height: 15em !important;
-	min-width: 30em !important;
+	min-width: 20em !important;
     overflow: scroll !important;
 }

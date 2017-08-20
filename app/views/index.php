@@ -72,7 +72,7 @@
                         <div class="form-group col-sm-1 col-xs-0"></div>
 
                         <!-- Select Tags -->
-                        <div class="form-group col-sm-5 col-xs-12">
+                        <div class="form-group col-sm-5 col-xs-12 dropdown-menu-tag">
                             <label for="tags">Tags: </label><br>
                             <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">
                             <?php foreach ($tags as $tag) : ?>
