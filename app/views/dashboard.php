@@ -2,20 +2,22 @@
 <!-- views/dashboard.html -->
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
-        
-        <div>
-            <div class="col-xs-10 text-left" style="padding-left: 7em">
-                <h6><strong>Bem Vindo <span><?= $_SESSION['nome'] ?></span>!</strong></h6>
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/dashboard/">Boas Praticas</a>
             </div>
             <div class="col-xs-2 dropdown text-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
-                  <ul class="dropdown-menu text-center">
-                    <li><a href="#">Meus Dados</a></li>
+                <ul class="dropdown-menu text-center">
+                    <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
-                  </ul>
-              </div>
-        </div>
+                </ul>
+            </div>
+        </nav>
 
         <div class="text-center">
             <hr>
@@ -35,7 +37,7 @@
                     </div>
 
                     <div class="text-left" style="margin-bottom:2em">
-                        <a href="/abpresa/praticas/add" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova Pratica</a>
+                        <a href="/abpresa/conteudo/add/" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova Pratica</a>
                     </div>
 
                     <div class="content">
@@ -57,8 +59,8 @@
                                         
                                         <tr>
                                             <td><?= $pratica->id ?></td>
-                                            <td>
-                                                <a href="" id="verPratica" title="Visualizar">
+                                            <td id="<?= $pratica->id ?>">
+                                                <a href="/abpresa/conteudo/show/<?= $pratica->id ?>" id="verPratica" title="Visualizar">
                                                     <?= $pratica->titulo_pratica ?>
                                                 </a>
                                             </td>
@@ -82,9 +84,10 @@
                                                 </small>
                                             </td>
                                             <td class="text-center" style="width: 8em">
-                                                <a href="" class="col-xs-4" style="color: #65a186" title="ADD Arquivo"><i class="fa fa-plus"></i></a>
-                                                <a href="" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
-                                                <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a>
+                                                <a href="" class="col-xs-4" style="color: #65a186; opacity:1;" title="ADD Arquivo"><i class="fa fa-plus"></i></a>
+                                                <a href="/abpresa/conteudo/edit/<?= $pratica->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
+                                                <!-- <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> -->
+                                                <a href="" class="col-xs-4" data-pathid="/abpresa/conteudo/remove/<?= $pratica->id ?>" data-msg="Pratica <?= $pratica->titulo_pratica ?>" onclick="modalRemove(this); return false;" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         

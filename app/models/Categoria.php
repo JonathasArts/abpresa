@@ -1,14 +1,16 @@
 <?php
 namespace App\Models; 
-use App\DB; 
+use App\DB;
 
 class Categoria {
 	
-	var $id;
-	var $titulo_categoria;
+	public $id;
+	public $titulo_categoria;
 	
 	// Construtor
-    function Categoria(){}
+    // public static function Categoria($titulo=""){
+    //     $this->titulo_categoria = $titulo;
+    // }
 
 	// Persistir categoria
 	public static function save($titulo_categoria){
@@ -50,11 +52,6 @@ class Categoria {
 
 	// Excluir categoria do Banco
 	public static function remove($id){
-        // valida o ID
-        if (empty($id)){
-            echo "ID não informado";
-            exit;
-        }
 
         $DB = new DB;
         $sql = "DELETE FROM categorias WHERE id = :id";
@@ -97,6 +94,22 @@ class Categoria {
         }else{                          // Retorna um array de objetos categoria
         	return $categorias;
         }
+	}
+
+    // Buscar uma ou todas as categorias no banco
+	public static function selectByTitulo($titulo = null){
+		
+        $sql = sprintf("SELECT * FROM categorias WHERE UPPER(titulo_categoria) = UPPER(:titulo)"); 
+
+        $DB = new DB; 
+        $stmt = $DB->prepare($sql);
+
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->execute();
+
+        $categorias = $stmt->fetchAll(\PDO::FETCH_OBJ);
+ 		
+        return $categorias[0];
 	}
 
     // Buscar categori de uma pratica no banco

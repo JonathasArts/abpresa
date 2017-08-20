@@ -7,10 +7,9 @@ class SessionController {
 
  
     // Exibe a tela de login
-    public function login(){
+    public function login($msg=null){
         $page = "login";
-    	$errormsg = "";
-        \App\View::make('login', [ 'page' => $page, 'errormsg' => $errormsg,]);
+        \App\View::make('login', [ 'page' => $page, 'msg' => $msg,]);
     }
  
  
@@ -24,19 +23,23 @@ class SessionController {
             $_SESSION['msg'] = "Bem Vindo ".$username."!";
             header('Location: /abpresa/dashboard/');
             exit;
-        }else{
-        	$errormsg = "Usuario ou Senha incorretos";
-	        \App\View::make('login', [ 'errormsg' => $errormsg,]);
+        } else {
+            $_SESSION['msgE'] = "Usuario ou Senha incorretos!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
         }
     }
 
     // Encerra a Sessão
-    public function logout(){
-    	// encerra a sessão
-    	if(Session::logout()){
+    public function logout() {
+    	if (Session::logout()) {
             header('Location: /abpresa/');
             exit;
-    	}
+    	} else {
+            $_SESSION['msgE'] = "Erro ao fazer logout!";
+            $var = "<script>javascript:history.back(-1)</script>";
+            echo $var;
+        }
     }
 
     //

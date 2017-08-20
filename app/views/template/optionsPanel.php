@@ -10,7 +10,7 @@
             <hr>
         </div>
 
-        <div class="row text-center">
+        <!-- <div class="row text-center">
             <h3><span>EXPLORAR CONTEÚDO</span></h3>
         </div>
         
@@ -82,7 +82,7 @@
                     <li><a href="#"><i class="fa fa-folder-o"></i>Lorem </a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

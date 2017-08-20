@@ -71,8 +71,23 @@ $(document).ready(function() {
         $('#modal-cancel').iziModal('open');
     });
 
-});
+    // fileinput
+    $("#upload_add").fileinput({
+        language: "pt-BR",
+        uploadUrl: "http://localhost/abpresa/app/uploads", // server upload action
+        uploadAsync: false,
+        maxFileCount: 10,
+        showBrowse: false,
+        showUpload: false,
+        showUploadedThumbs: false,
+        browseOnZoneClick: true,
+        // allowedPreviewTypes: null, // set to empty, null or false to disable preview for all types
+        fileActionSettings: {
+            showUpload: false
+        }
+    });
 
+});
 
 // Instancia e Carrega o modal de confirmação de exclusão
 function modalRemove(bt){
@@ -95,8 +110,9 @@ function modalRemove(bt){
     // $('#modal-remove #bt-modal-confirm').attr("href", path_id);
     $('#modal-ok #bt-md-ok').attr("href", path_id);
 
-    event.preventDefault();
+    // event.preventDefault();
     $('#modal-remove').iziModal('open');
+    
 }
 
 function alertMSG(msg=null){
@@ -114,4 +130,23 @@ function alertMSG(msg=null){
     $('#modal-msg').iziModal('setTitle', msg);
     
     $('#modal-msg').iziModal('open');
+}
+
+function alertERR(msg=null){
+    $("#modal-err").iziModal({
+        headerColor: '#e5c100',
+        closeButton: false,
+        width: 400,
+        timeout: 1500,
+        pauseOnHover: true,
+        timeoutProgressbar: true,
+        iconClass: 'fontawesome',
+        icon: 'fa fa-check',
+        attached: 'bottom'
+    });
+   
+    $('#modal-err').iziModal('setTitle', msg);
+    
+    $('#modal-err').iziModal('open');
+
 }

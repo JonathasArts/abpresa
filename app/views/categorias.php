@@ -3,19 +3,22 @@
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
         
-        <div>
-            <div class="col-xs-10 text-left" style="padding-left: 7em">
-                <h6><strong>Bem Vindo <span><?= $_SESSION['nome'] ?></span>!</strong></h6>
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
+                <a class="breadcrumb-item active" href="/abpresa/categorias/">Categoria</a>
             </div>
             <div class="col-xs-2 dropdown text-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
-                    <li><a href="#">Meus Dados</a></li>
+                    <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
             </div>
-        </div>
+        </nav>
 
         <div class="text-center">
             <hr>
@@ -60,7 +63,7 @@
                                             <td class="text-center" style="width: 8em">
                                                 <a href="/abpresa/categorias/edit/<?= $categoria->id ?>" class="col-xs-6" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
                                                 
-                                                <a href="#" class="col-xs-6" data-pathid="/abpresa/categorias/remove/<?= $categoria->id ?>" data-msg="Categoria <?= $categoria->titulo_categoria ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
+                                                <a href="" class="col-xs-6" data-pathid="/abpresa/categorias/remove/<?= $categoria->id ?>" data-msg="Categoria <?= $categoria->titulo_categoria ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         

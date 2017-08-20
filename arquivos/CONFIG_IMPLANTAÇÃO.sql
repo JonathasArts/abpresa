@@ -9,7 +9,7 @@ Instalar os softwares:
 ---------------------------------------------------------------------
 						INSTALAÇÃO DO SLIM PHP
 ---------------------------------------------------------------------
-1 - no XAMP edite o arquivo do apache (no botão 'config'), o arquivo 
+1 - No XAMP, edite o arquivo do apache (no botão 'config'), o arquivo 
 php.ini removendo o ';' nas linhas:
 
 	extension=php_openssl.dll,
@@ -20,6 +20,7 @@ php.ini removendo o ';' nas linhas:
 	https://getcomposer.org/Composer-Setup.exe);
 
 3 - Clone o projeto no diretório 'htdocs' do XAMP em C:\xampp\htdocs;
+	projeto: https://github.com/JonathasArts/abpresa
 
 4 - Crie um novo banco no postgreSQL com o nome 'bd_abpresa' e usuario 
 'postgres' e senha 'postgres'.

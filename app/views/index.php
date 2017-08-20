@@ -3,6 +3,36 @@
 <div class="contentAreaInner clearfix no-pad-left no-pad-right">
     <div class="row">
         
+        <nav class="breadcrumb" style="padding-left:5em;margin-top:-3.5em;background-color:#fff;";>
+            <div class="col-xs-10">
+                <a class="breadcrumb-item active" href="/abpresa/">Home</a>
+            </div>
+            
+            
+            <div class="col-xs-2 dropdown text-right">
+            
+                <?php if(!empty($_SESSION['username'])) : ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
+                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/logout/">Sair</a></li>
+                    </ul>
+                <?php else : ?>
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/abpresa/admin/">Login</a></li>
+                    </ul>
+                <?php endif ?>
+                
+            </div>
+
+        </nav><hr style="margin-bottom:-1em;"/>
+
         <header class="page-header text-center extra-top-pad">
             <h1>VOCÊ TEM UM <span>PROJETO DE SOFTWARE</span>?</h1>
             <strong>Encontre aqui as <span>melhores práticas</span> para desenvolve-lo!</strong>
@@ -26,15 +56,16 @@
                 <div class="row div-filtros">
                     <div class="form-group col-sm-2 col-xs-0"></div>
                     <div class="form-group col-sm-12 col-xs-10" style="text-align: left;padding: 0 5em;">
-                    <fieldset><legend><small class="page-header" style="color: #abafb6;">FILTROS</small></legend>
+                    <fieldset style="margin-left: 2em;"><legend><small class="page-header" style="color: #abafb6;">FILTROS</small></legend>
                         
+                        <div class="form-group col-sm-1 col-xs-0"></div>
                         <!-- Select Categorias -->
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <label for="categoria">Categoria: </label>
-                            <select name="categoria" class="form-control">
-                            <option selected="selected">Escolha uma Categoria</option>
+                        <div class="form-group col-sm-5 col-xs-12">
+                            <label for="categoria_id">Categoria: </label>
+                            <select name="categoria_id" class="form-control">
+                            <option value="" selected="selected">Escolha uma Categoria</option>
                             <?php foreach ($categorias as $categoria) : ?>
-                                <option value="<?= $categoria->titulo_categoria ?>"><?= $categoria->titulo_categoria ?></option>
+                                <option value="<?= $categoria->id ?>"><?= $categoria->titulo_categoria ?></option>
                             <?php endforeach ?>
                             </select>
                         </div>

@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/bootstrap-multiselect.css" type="text/css">
     <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/tablesorter.css" type="text/css">
     <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/iziModal.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/bootstrap-tagsinput.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/jquery.fancybox.css" />
+    <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/fileinput.css" />
+    <link rel="stylesheet" href="<?php echo $path ?>/app/assets/css/fileinput-rtl.css" />
 
 </head>
 <!-- END template/head.html -->

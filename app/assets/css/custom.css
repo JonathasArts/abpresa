@@ -58,3 +58,7 @@
 th {
    cursor: pointer;
 }
+
+.breadcrumb div a{
+	text-decoration:none !important;
+}

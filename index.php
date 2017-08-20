@@ -32,6 +32,22 @@ $app->post('/pesquisar/', function (){
     $AppController = new \App\Controllers\AppController; // Instancia o Controler
     $AppController->pesquisar();  // Chama o método do Controler
 });
+
+// Exibe as informações do Conteudo "/abpresa/Conteudo/show/"
+$app->get('/resultado/show/{id}', function ($request){
+    // pega o ID da URL
+    $id = $request->getAttribute('id');
+    
+    $AppController = new \App\Controllers\AppController; // Instancia o Controler
+    $AppController->show($id);  // Chama o método do Controler
+});
+
+// 
+$app->get('/resultado/return/', function (){
+    $AppController = new \App\Controllers\AppController; // Instancia o Controler
+    $AppController->returnResult();  // Chama o método do Controler
+});
+
 /*__________________________________________________________________________________________*/
 
 
@@ -43,7 +59,7 @@ $app->post('/pesquisar/', function (){
 // Carrega a Página de login para a URL "/abpresa/admin/"
 $app->get('/admin/', function (){
     $SessionController = new \App\Controllers\SessionController; // Instancia o Controler
-    $SessionController->login();  // Chama o método do Controler
+    $SessionController->login(getMensagem());  // Chama o método do Controler
 });
 
 // Realiza o login do usuario administrador "/abpresa/admin/"
@@ -75,12 +91,89 @@ $app->get('/dashboard/', function (){
 /*                                      USUARIOS                                            */
 /*==========================================================================================*/ 
 
-// Lista de Usuários Cadastrados "/abpresa/usuarios/"
-$app->get('/usuarios/', function (){
-    $UserController = new \App\Controllers\UserController; // Instancia o Controler
-    $UserController->index();  // Chama o método do Controler
+// Exibe as informações do usuario "/abpresa/usuario/show/"
+$app->get('/usuarios/show/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->show($id);  // Chama o método do Controler
+    }
 });
 
+// Lista de Usuários Cadastrados "/abpresa/usuarios/"
+$app->get('/usuarios/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->usuarios(getMensagem());  // Chama o método do Controler
+});
+
+// Carrega a Página de criar conta de usuario "/abpresa/cadastro/"
+$app->get('/cadastro/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->cadastro();  // Chama o método do Controler
+});
+
+// Carrega a Página de cadastro de usuario "/abpresa/usuario/add/"
+$app->get('/usuarios/add/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->create();  // Chama o método do Controler
+});
+
+// Realiza o login do usuario administrador "/abpresa/usuario/add/"
+$app->post('/usuarios/add/', function (){
+    $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+    $UsuarioController->store();  // Chama o método do Controler
+});
+
+// Carrega o formulário de edição de usuario "/abpresa/usuario/edit/"
+$app->get('/usuarios/edit/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->edit($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de edição de usuario "/abpresa/usuario/edit/"
+$app->post('/usuarios/edit/', function (){
+    if(verificaLogin()){
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->update();  // Chama o método do Controler
+    }
+});
+
+// Carrega o formulário de mudança de senha "/abpresa/usuario/edit/"
+$app->get('/usuarios/edit/senha/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->mudarSenha($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de mudança de senha "/abpresa/usuario/edit/"
+$app->post('/usuarios/edit/senha/', function (){
+    if(verificaLogin()){
+        $UsuarioController = new \App\Controllers\UsuarioController; // Instancia o Controler
+        $UsuarioController->updateSenha();  // Chama o método do Controler
+    }
+});
+
+// Remover um usuario
+$app->get('/usuarios/remove/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+     
+        $UsuarioController = new \App\Controllers\UsuarioController;
+        $UsuarioController->remove($id);
+    }
+});
 
 /*__________________________________________________________________________________________*/
 
@@ -90,7 +183,62 @@ $app->get('/usuarios/', function (){
 /*                                      PRATICAS                                            */
 /*==========================================================================================*/ 
 
+// Exibe as informações do Conteudo "/abpresa/Conteudo/show/"
+$app->get('/conteudo/show/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->show($id);  // Chama o método do Controler
+    }
+});
 
+// Carrega o formulário de cadastro de Conteudo "/abpresa/Conteudo/add/"
+$app->get('/conteudo/add/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->create();  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de cadastro de Conteudo "/abpresa/Conteudo/add/"
+$app->post('/conteudo/add/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->store();  // Chama o método do Controler
+    }
+});
+
+// Carrega o formulário de edição de Conteudo "/abpresa/Conteudo/edit/"
+$app->get('/conteudo/edit/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+        
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->edit($id);  // Chama o método do Controler
+    }
+});
+
+// Processa formulário de edição de Conteudo "/abpresa/Conteudo/edit/"
+$app->post('/conteudo/edit/', function (){
+    if(verificaLogin()){
+        $ConteudoController = new \App\Controllers\ConteudoController; // Instancia o Controler
+        $ConteudoController->update();  // Chama o método do Controler
+    }
+});
+
+// Remover uma Categoria
+$app->get('/conteudo/remove/{id}', function ($request){
+    if(verificaLogin()){
+        // pega o ID da URL
+        $id = $request->getAttribute('id');
+     
+        $ConteudoController = new \App\Controllers\ConteudoController;
+        $ConteudoController->remove($id);
+    }
+});
 
 
 /*__________________________________________________________________________________________*/
@@ -188,7 +336,7 @@ function verificaLogin(){
 
 // 
 function getMensagem(){
-    $msg = $_SESSION['msg']; // Pega a mensagem de confirmação
+    $msg = isset($_SESSION['msg']) ? $_SESSION['msg'] : ""; // Pega a mensagem de confirmação
     $_SESSION['msg'] = ""; // Esvazia a msg na sessão
 
     return $msg;
