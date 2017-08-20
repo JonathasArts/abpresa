@@ -257,14 +257,13 @@ class ConteudoController {
         $path      = 'C:\xampp\htdocs\abpresa\app\uploads';
         $fullPath  = $path.'\\'.$fileName;
 
-        // Executo a leitura no diretório para coletar os nomes dos arquivos.
         $arquivos = Arquivo::selectArqsByPratica($id);
 
         $zip = new \ZipArchive();
-        // Criamos o arquivo e verificamos se ocorreu tudo certo
+        // Criamos o arquivo e verifica
         if( $zip->open($fullPath, \ZipArchive::CREATE) ) {
         
-            // adiciona ao zip todos os arquivos contidos no diretório.
+            // Adiciona ao zip todos os arquivos
             foreach($arquivos as $arquivo) {
                 $zip->addFile($arquivo->path_arquivo, $arquivo->titulo_arquivo);
             }
@@ -272,13 +271,13 @@ class ConteudoController {
             $zip->close();
         }
 
-        // Primeiro nos certificamos de que o arquivo zip foi criado.
+        // Verifica se arquivo zip foi criado.
         if(file_exists($fullPath)){
-            // Forçamos o donwload do arquivo.
+            // Força o donwload do arquivo.
             header('Content-Type: application/zip');
             header('Content-Disposition: attachment; filename="'.$fileName.'"');
             readfile($fullPath);
-            //removemos o arquivo zip após download
+            //remove o arquivo zip após download
             unlink($fullPath);
         }
 
