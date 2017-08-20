@@ -67,25 +67,16 @@
                                 <!-- PDF  -->
                                 <?php if ($arquivo->tipo == "PDF") : ?>
                                 
-                                <a class="fancybox" target="_blank" data-fancybox-type="iframe" href="<?= $caminho ?>" style="text-align:center">
-                                    <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
-                                    <div class="text-center" style="max-width:15em;font-size:.7em">
-                                        <p style="margin:4px 0;"><?= $arquivo->titulo_arquivo ?></p>
-                                    </div>
-                                </a>
-                                <script>
-                                    $(".fancybox").fancybox({
-                                        openEffect  : 'none',
-                                        closeEffect : 'none',
-                                        iframe : {
-                                            preload: false
-                                        }
-                                    });
-                                </script>
-
-                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG") : ?>
+                                <div class="row text-center">
+                                    <a class="fancybox" data-fancybox-type="iframe" href="<?= $caminho ?>">
+                                        <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
+                                        <p style="margin:4px 0;font-size:.7em;"><?= $arquivo->titulo_arquivo ?></p>
+                                    </a>
+                                </div>
 
                                 <!-- Imagem  -->
+                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG") : ?>
+                                
                                 <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
                                     <img src="<?= $caminho ?>" alt="...">
                                     <div class="text-center" style="max-width:15em;font-size:.7em">

@@ -42,7 +42,7 @@
 
                     <div class="content">
                         <div class="table-responsive text-left">
-                            <table id="table-usuarios" class="table tablesorter">
+                            <table id="table-usuarios" class="table table-striped tablesorter">
                                 <thead>
                                     <tr>
                                         <th>ID</th>

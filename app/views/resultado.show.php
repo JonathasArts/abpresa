@@ -68,9 +68,9 @@
                     </div>
                 </div>
 
-                <div class="col-xs-6">
+                <div class="col-xs-6 text-center">
                     <div class="row">
-                        <h1 class="text-center"><small><strong>Arquivos</strong></small></h1>
+                        <h1><small><strong>Arquivos</strong></small></h1>
                         <!-- foreach dos arquivos  -->
                         <?php foreach ($arquivos_pratica as $arquivo) : ?>
                             <?php $caminho = $path.str_replace("C:/xampp/htdocs/abpresa", "", str_replace("\\", "/", $arquivo->path_arquivo)); ?>
@@ -78,35 +78,27 @@
                                 
                                 <!-- PDF  -->
                                 <?php if ($arquivo->tipo == "PDF") : ?>
-                                
-                                <a class="fancybox" target="_blank" data-fancybox-type="iframe" href="<?= $caminho ?>" style="text-align:center">
-                                    <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
-                                    <div class="text-center" style="max-width:15em;font-size:.7em">
-                                        <p style="margin:4px 0;"><?= $arquivo->titulo_arquivo ?></p>
-                                    </div>
-                                </a>
-                                <script>
-                                    $(".fancybox").fancybox({
-                                        openEffect  : 'none',
-                                        closeEffect : 'none',
-                                        iframe : {
-                                            preload: false
-                                        }
-                                    });
-                                </script>
 
-                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG") : ?>
+                                <div class="row text-center">
+                                    <a class="fancybox" data-fancybox-type="iframe" href="<?= $caminho ?>">
+                                        <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
+                                        <p style="margin:4px 0;font-size:.7em;"><?= $arquivo->titulo_arquivo ?></p>
+                                    </a>
+                                </div>
 
                                 <!-- Imagem  -->
-                                <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
-                                    <img src="<?= $caminho ?>" alt="...">
-                                    <div class="text-center" style="max-width:15em;font-size:.7em">
-                                        <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
-                                    </div>
-                                </a>
+                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG" || $arquivo->tipo == "GIF" || $arquivo->tipo == "TIF") : ?>
+
+                                <div class="row text-center">
+                                    <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
+                                        <img src="<?= $caminho ?>" alt="">
+                                        <div style="max-width:15em;font-size:.7em">
+                                            <p style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                        </div>
+                                    </a>
+                                </div>
 
                                 <?php endif ?>
-
                             </div>
 
                         <?php endforeach ?>
@@ -121,11 +113,15 @@
 
         <div class="row">
             <div class="col-xs-1"></div>
-                <div class="col-xs-5 text-center">
+                <div class="col-xs-5 text-center" style="heigth:4em;">
+                    <form action="" method="GET">
+                    <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
                     Adicionar opção de comentários
+                    </form>
                 </div>
                 <div class="col-xs-5 text-center">
                     Lista de Boas praticas relacionadas
+
                 </div>
             <div class="col-xs-1"></div>
         </div>

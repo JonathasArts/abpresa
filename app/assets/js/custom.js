@@ -101,6 +101,14 @@ $(document).ready(function() {
         }
     });
 
+    $(".fancybox").fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+        iframe : {
+            preload: false
+        }
+    });
+
 });
 
 // Instancia e Carrega o modal de confirmação de exclusão

@@ -44,7 +44,7 @@
                     <div class="content">
                     <?php if(!empty($categorias)) :?>
                         <div class="table-responsive text-left">
-                            <table id="table-categorias" class="table tablesorter">
+                            <table id="table-categorias" class="table table-striped tablesorter">
                                 <thead>
                                     <tr>
                                         <th>ID</th>

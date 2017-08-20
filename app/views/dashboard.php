@@ -43,7 +43,7 @@
                     <div class="content">
                     <?php if(!empty($praticas)) :?>
                         <div class="table-responsive text-left">
-                            <table id="table-praticas" class="table tablesorter">
+                            <table id="table-praticas" class="table table-striped tablesorter">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -84,7 +84,6 @@
                                                 </small>
                                             </td>
                                             <td class="text-center" style="width: 8em">
-                                                <a href="" class="col-xs-4" style="color: #65a186; opacity:1;" title="ADD Arquivo"><i class="fa fa-plus"></i></a>
                                                 <a href="/abpresa/conteudo/edit/<?= $pratica->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
                                                 <!-- <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> -->
                                                 <a href="" class="col-xs-4" data-pathid="/abpresa/conteudo/remove/<?= $pratica->id ?>" data-msg="Pratica <?= $pratica->titulo_pratica ?>" onclick="modalRemove(this); return false;" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
