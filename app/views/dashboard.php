@@ -64,7 +64,7 @@
                                                     <?= $pratica->titulo_pratica ?>
                                                 </a>
                                             </td>
-                                            <td><?php echo (substr_replace($pratica->descricao_pratica, '...', 30)); ?></td>
+                                            <td><?php echo (substr_replace($pratica->descricao_pratica, '...', 20)); ?></td>
                                             <td>
                                                 <?php foreach ($categorias as $categoria) {
                                                     if($categoria->id == $pratica->categorias_id){

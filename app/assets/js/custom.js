@@ -12,7 +12,6 @@ $("body").on("click",".accordion > header > a",function (e) {
     p.find(".accordion-content").slideToggle();
 });
 
-
 $(document).ready(function() {
     // MultiSelect
     $('#select-tags').multiselect();

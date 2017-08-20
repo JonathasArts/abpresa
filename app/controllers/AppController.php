@@ -61,7 +61,7 @@ class AppController {
         $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : null;
         $tags_buscadas = isset($_POST['tags']) ? $_POST['tags'] : null;
         
-        // $arquivos; // pegar aquivos/link-arquivo para enviar aqui
+        $arquivos = Array();
         $categorias_das_praticas = Array();
         $tags = Array();
 
@@ -71,7 +71,7 @@ class AppController {
         $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);
 
         foreach ($praticas as $p) {
-            // $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
+            $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
             $tags[$p->id] = Tag::selectTagsByPratica($p->id);
             $categorias_das_praticas[$p->id] = Categoria::selectByPratica($p->id);
         }
@@ -86,6 +86,7 @@ class AppController {
         $return['praticas'] = $praticas;
         $return['categorias'] = $categorias;
         $return['allTags'] = $allTags;
+        $return['arquivos'] = $arquivos;
 
         $_SESSION['return'] = $return;
 
@@ -99,8 +100,7 @@ class AppController {
             'praticas' => $praticas,
             'categorias' => $categorias,
         	'allTags' => $allTags,
-            // 'arquivos' => $arquivos,
-        	// pegar aquivos/link-arquivo para enviar aqui
+            'arquivos' => $arquivos,
         ]);
     }
  
@@ -138,8 +138,7 @@ class AppController {
             'praticas' => $return['praticas'],
             'categorias' => $return['categorias'],
         	'allTags' => $return['allTags'],
-            // 'arquivos' => $arquivos,
-        	// pegar aquivos/link-arquivo para enviar aqui
+            'arquivos' => $return['arquivos'],
         ]);
     }
 	

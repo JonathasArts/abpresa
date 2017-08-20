@@ -79,6 +79,24 @@
                                 <a href="/abpresa/conteudo/download/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar boa pratica"><i class="fa fa-download"></i></a>
                                 <a href="/abpresa/resultado/show/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Mais detalhes"><i class="fa fa-eye"></i></a>
                                 <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
+                            </div><br/><br/>
+                            <p class="title-col-pratica">ARQUIVOS</p>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <?php foreach ($arquivos[$p->id] as $arquivo) : ?>
+                                    <a href="<?= $arquivo->path_arquivo ?>" title="<?= $arquivo->titulo_arquivo ?>" style="font-size:2em;text-decoration:none;">
+                                        <?php
+                                            switch ($arquivo->tipo) {
+                                                case 'PDF':
+                                                    echo "<i class='fa fa-file-pdf-o' aria-hidden='true' style='color:red'></i>";
+                                                    break;
+                                                
+                                                default:
+                                                    echo "<i class='fa fa-file-image-o' aria-hidden='true' style='color:#89AC90'></i>";
+                                                    break;
+                                            }
+                                        ?>
+                                    </a>
+                                <?php endforeach ?>
                             </div>
                         </div>
 
