@@ -2,6 +2,7 @@
 namespace App\Controllers; 
 use \App\Models\Pratica;
 use \App\Models\Categoria;
+use \App\Models\Arquivo;
 use \App\Models\Tag;
 
 class ConteudoController { 
@@ -13,6 +14,7 @@ class ConteudoController {
         $pratica = Pratica::selectAll($id);
         $categoria_pratica = Categoria::selectAll($pratica->categorias_id);
         $tags_pratica = Tag::selectTagsByPratica($pratica->id);
+        $arquivos_pratica = Arquivo::selectArqsByPratica($pratica->id);
 
         \App\View::make('conteudo.show', [
             'page' => $page,
@@ -20,6 +22,7 @@ class ConteudoController {
             'pratica' => $pratica,
             'categoria_pratica' => $categoria_pratica,
             'tags_pratica' => $tags_pratica,
+            'arquivos_pratica' => $arquivos_pratica,
         ]);
     }
 
@@ -55,6 +58,7 @@ class ConteudoController {
             if (Pratica::save($titulo_conteudo, $categoria, $descricao_conteudo)) {
                 $pratica_id = $_SESSION['ultimo_id']; // retornar ultimo id inserido
 
+                // tags pratica
                 foreach ($tags as $tag) {
                     $t = Tag::selectByDesc($tag);
                     // caso a tag já exista
@@ -73,7 +77,35 @@ class ConteudoController {
                 }
 
                 // upload de arquivos
-                // associar arquivos a pratica
+                $diretorio = 'C:\xampp\htdocs\abpresa\app\uploads';
+                $arquivos = isset($_FILES['arquivos']) ? $_FILES['arquivos'] : null;
+
+                for ($k = 0; $k < count($arquivos['name']); $k++) {
+                    // Pega a extensão
+                    $extensao = pathinfo ($arquivos['name'][$k], PATHINFO_EXTENSION);
+                    // Converte a extensão para minúsculo
+                    $extensao = strtolower ($extensao);
+
+                    $novoNome = $titulo_conteudo.'_'.date("Y-m-d_H-i-s_").'_'.$k.'.'.$extensao;
+                    $destino = $diretorio."\\".$novoNome;
+
+                    if (move_uploaded_file($arquivos['tmp_name'][$k], $destino)) {
+                        if (Arquivo::save($novoNome, "", $destino, $extensao)) {
+                            $arquivo_id = $_SESSION['ultimo_id']; // retornar ultimo id inserido
+                            
+                            // associar arquivos a pratica
+                            if (Arquivo::assocArqPratica($arquivo_id, $pratica_id)){
+                                
+                            }else{
+                                die("erro");
+                            }
+                        }
+                    } else {
+                        // $_SESSION['msgE'] = "ERRO ao realizar upload de arquivos!";
+                        // $var = "<script>javascript:history.back(-1)</script>";
+                        // echo $var;
+                    }
+                }
 
                 $_SESSION['msg'] = "Boa Prática ".$titulo_conteudo." cadastrada!";
                 header('Location: /abpresa/dashboard/');
@@ -160,6 +192,7 @@ class ConteudoController {
     public function remove($id) {
         $p = Pratica::selectAll($id);
         $tags = Tag::selectTagsByPratica($id);
+        $arquivos = Arquivo::selectArqsByPratica($id);
 
         foreach ($tags as $tag) {
             if (Tag::desassocTagPratica($tag->id, $id)){
@@ -169,6 +202,14 @@ class ConteudoController {
                     if (Tag::remove($tag->id)){
                         // Tag removida
                     }
+                }
+            }
+        }
+        
+        foreach ($arquivos as $arquivo) {
+            if (Arquivo::desassocArqPratica($arquivo->id, $p->id)){
+                if (Arquivo::remove($arquivo->id)){
+                    // Arquivo Removido
                 }
             }
         }

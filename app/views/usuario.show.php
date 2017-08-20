@@ -46,7 +46,7 @@
                 <div class="col-xs-4">
                     <a href="/abpresa/usuarios/edit/<?= $usuario->id ?>" style="color: #ebc867;font-size:4em;" title="Editar"><i class="fa fa-edit"></i></a>
                     <span style="margin-left:3em;"></span>
-                    <a href="#" data-pathid="/abpresa/usuarios/remove/<?= $usuario->id ?>" data-msg="Usuario <?= $usuario->nome ?>" onclick="modalRemove(this)" style="color: #d63123;font-size:4em;" title="Excluir"><i class="fa fa-close"></i></a> 
+                    <a href="" data-pathid="/abpresa/usuarios/remove/<?= $usuario->id ?>" data-msg="Usuario <?= $usuario->nome ?>" onclick="modalRemove(this)" style="color: #d63123;font-size:4em;" title="Excluir"><i class="fa fa-close"></i></a> 
                 </div>
                 <div class="col-xs-2"></div>
             </div>

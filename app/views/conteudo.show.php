@@ -60,24 +60,41 @@
                     <div class="row">
                         <h1 class="text-center"><small><strong>Arquivos</strong></small></h1>
                         <!-- foreach dos arquivos  -->
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
+
+                        <?php foreach ($arquivos_pratica as $arquivo) : ?>
+                            <?php $caminho = $path.str_replace("C:/xampp/htdocs/abpresa", "", str_replace("\\", "/", $arquivo->path_arquivo)); ?>
+                            <div class="col-xs-6 col-md-4">
+                                
+                                <!-- PDF  -->
+                                <?php if ($arquivo->tipo == "PDF") : ?>
+                                
+                                <a class="fancybox" data-fancybox-type="iframe" href="<?= $caminho ?>" style="text-align:center">
+                                    <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
+                                    <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                </a>
+                                <script>
+                                    $(".fancybox").fancybox({
+                                        openEffect  : 'none',
+                                        closeEffect : 'none',
+                                        iframe : {
+                                            preload: false
+                                        }
+                                    });
+                                </script>
+
+                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG") : ?>
+
+                                <!-- Imagem  -->
+                                <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
+                                    <img src="<?= $caminho ?>" alt="...">
+                                    <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                </a>
+
+                                <?php endif ?>
+
+                            </div>
+
+                        <?php endforeach ?>
                         <!-- END foreach dos arquivos  -->
                     </div>
                 </div>

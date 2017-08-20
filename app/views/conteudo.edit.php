@@ -68,9 +68,7 @@
 
                         <div class="form-group col-xs-12">
                             <fieldset><legend><label for="" style="font-size:.7em;color:#abafb6;padding-left:1em;">Arquivos</label></legend>
-                                <div class="text-center">
-                                    <p>adicionar upload de arquivos aqui...</p><br/><br/>
-                                </div>
+                                <input id="upload_add" name="arquivos[]" type="file" multiple class="file-loading">
                             </fieldset>
                         </div>
 

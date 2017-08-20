@@ -69,7 +69,7 @@
                                             <td class="text-center" style="width: 8em">
                                                 <a href="/abpresa/usuarios/edit/<?= $usuario->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
                                                 <!-- <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> -->
-                                                <a href="#" class="col-xs-4" data-pathid="/abpresa/usuarios/remove/<?= $usuario->id ?>" data-msg="Usuario <?= $usuario->nome ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
+                                                <a href="" class="col-xs-4" data-pathid="/abpresa/usuarios/remove/<?= $usuario->id ?>" data-msg="Usuario <?= $usuario->nome ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         
