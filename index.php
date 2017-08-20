@@ -242,13 +242,11 @@ $app->get('/conteudo/remove/{id}', function ($request){
 
 // Baixar uma Pratica
 $app->get('/conteudo/download/{id}', function ($request){
-    if(verificaLogin()){
-        // pega o ID da URL
-        $id = $request->getAttribute('id');
-     
-        $ConteudoController = new \App\Controllers\ConteudoController;
-        $ConteudoController->download($id);
-    }
+    // pega o ID da URL
+    $id = $request->getAttribute('id');
+    
+    $ConteudoController = new \App\Controllers\ConteudoController;
+    $ConteudoController->download($id);
 });
 
 

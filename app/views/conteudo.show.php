@@ -14,7 +14,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
                     <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -60,7 +60,6 @@
                     <div class="row">
                         <h1 class="text-center"><small><strong>Arquivos</strong></small></h1>
                         <!-- foreach dos arquivos  -->
-
                         <?php foreach ($arquivos_pratica as $arquivo) : ?>
                             <?php $caminho = $path.str_replace("C:/xampp/htdocs/abpresa", "", str_replace("\\", "/", $arquivo->path_arquivo)); ?>
                             <div class="col-xs-6 col-md-4">
@@ -114,7 +113,7 @@
                     Adicionar opção de comentários
                 </div>
                 <div class="col-xs-5 text-center">
-                    Lista de Boas praticas relacionadas
+                    Lista de boas praticas relacionadas
                 </div>
             <div class="col-xs-1"></div>
         </div>

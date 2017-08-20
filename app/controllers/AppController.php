@@ -3,6 +3,7 @@ namespace App\Controllers;
 use \App\Models\Pratica;
 use \App\Models\Categoria;
 use \App\Models\Tag;
+use \App\Models\Arquivo;
 
 class AppController { 
 
@@ -110,6 +111,7 @@ class AppController {
         $pratica = Pratica::selectAll($id);
         $categoria_pratica = Categoria::selectAll($pratica->categorias_id);
         $tags_pratica = Tag::selectTagsByPratica($pratica->id);
+        $arquivos_pratica = Arquivo::selectArqsByPratica($pratica->id);
 
         \App\View::make('resultado.show', [
             'page' => $page,
@@ -117,6 +119,7 @@ class AppController {
             'pratica' => $pratica,
             'categoria_pratica' => $categoria_pratica,
             'tags_pratica' => $tags_pratica,
+            'arquivos_pratica' => $arquivos_pratica,
         ]);
     }
 
