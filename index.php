@@ -229,7 +229,7 @@ $app->post('/conteudo/edit/', function (){
     }
 });
 
-// Remover uma Categoria
+// Remover uma Pratica
 $app->get('/conteudo/remove/{id}', function ($request){
     if(verificaLogin()){
         // pega o ID da URL
@@ -238,6 +238,15 @@ $app->get('/conteudo/remove/{id}', function ($request){
         $ConteudoController = new \App\Controllers\ConteudoController;
         $ConteudoController->remove($id);
     }
+});
+
+// Baixar uma Pratica
+$app->get('/conteudo/download/{id}', function ($request){
+    // pega o ID da URL
+    $id = $request->getAttribute('id');
+    
+    $ConteudoController = new \App\Controllers\ConteudoController;
+    $ConteudoController->download($id);
 });
 
 

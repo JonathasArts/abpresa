@@ -15,7 +15,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
                         <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/logout/">Sair</a></li>
                     </ul>
@@ -23,7 +23,7 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li><a href="/abpresa/cadastro/">Criar conta</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/admin/">Login</a></li>
                     </ul>
@@ -63,7 +63,7 @@
                         <div class="form-group col-sm-5 col-xs-12">
                             <label for="categoria_id">Categoria: </label>
                             <select name="categoria_id" class="form-control">
-                            <option value="" selected="selected">Escolha uma Categoria</option>
+                            <option value="" selected="selected">Escolha uma categoria</option>
                             <?php foreach ($categorias as $categoria) : ?>
                                 <option value="<?= $categoria->id ?>"><?= $categoria->titulo_categoria ?></option>
                             <?php endforeach ?>
@@ -72,7 +72,7 @@
                         <div class="form-group col-sm-1 col-xs-0"></div>
 
                         <!-- Select Tags -->
-                        <div class="form-group col-sm-5 col-xs-12">
+                        <div class="form-group col-sm-5 col-xs-12 dropdown-menu-tag">
                             <label for="tags">Tags: </label><br>
                             <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">
                             <?php foreach ($tags as $tag) : ?>

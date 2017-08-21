@@ -6,13 +6,13 @@
             <div class="col-xs-10">
                 <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
                 <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
-                <a class="breadcrumb-item active" href="/abpresa/dashboard/">Boas Praticas</a>
+                <a class="breadcrumb-item active" href="/abpresa/dashboard/">Boas praticas</a>
             </div>
             <div class="col-xs-2 dropdown text-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
                     <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -22,7 +22,7 @@
         <div class="text-center">
             <hr>
             <div class="row">
-                <a href="/abpresa/dashboard/" class="btn btn-default btn-menu-list active"><i class='fa fa-list'></i> Boas Praticas</a>
+                <a href="/abpresa/dashboard/" class="btn btn-default btn-menu-list active"><i class='fa fa-list'></i> Boas praticas</a>
                 <a href="/abpresa/categorias/" class="btn btn-default btn-menu-list"><i class='fa fa-th-list'></i> Categorias</a>
                 <a href="/abpresa/usuarios/" class="btn btn-default btn-menu-list"><i class='fa fa-list-alt'></i> Usuários</a>
             </div><hr>
@@ -33,17 +33,17 @@
                 <div class="col-xs-10">
 
                     <div class="header">
-                        <h2 class="title"><strong><span>Boas Práticas Cadastradas</span></strong></h2>
+                        <h2 class="title"><strong><span>Boas práticas cadastradas</span></strong></h2>
                     </div>
 
                     <div class="text-left" style="margin-bottom:2em">
-                        <a href="/abpresa/conteudo/add/" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova Pratica</a>
+                        <a href="/abpresa/conteudo/add/" class="btn btn-default btn-menu-list"><i class='fa fa-plus'></i> Nova pratica</a>
                     </div>
 
                     <div class="content">
                     <?php if(!empty($praticas)) :?>
                         <div class="table-responsive text-left">
-                            <table id="table-praticas" class="table tablesorter">
+                            <table id="table-praticas" class="table table-striped tablesorter">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -64,7 +64,7 @@
                                                     <?= $pratica->titulo_pratica ?>
                                                 </a>
                                             </td>
-                                            <td><?php echo (substr_replace($pratica->descricao_pratica, '...', 30)); ?></td>
+                                            <td><?php echo (substr_replace($pratica->descricao_pratica, '...', 20)); ?></td>
                                             <td>
                                                 <?php foreach ($categorias as $categoria) {
                                                     if($categoria->id == $pratica->categorias_id){
@@ -84,10 +84,9 @@
                                                 </small>
                                             </td>
                                             <td class="text-center" style="width: 8em">
-                                                <a href="" class="col-xs-4" style="color: #65a186; opacity:1;" title="ADD Arquivo"><i class="fa fa-plus"></i></a>
                                                 <a href="/abpresa/conteudo/edit/<?= $pratica->id ?>" class="col-xs-4" style="color: #ebc867" title="Editar"><i class="fa fa-edit"></i></a>
                                                 <!-- <a href="" class="col-xs-4" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> -->
-                                                <a href="#" class="col-xs-4" data-pathid="/abpresa/conteudo/remove/<?= $pratica->id ?>" data-msg="Pratica <?= $pratica->titulo_pratica ?>" onclick="modalRemove(this)" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
+                                                <a href="" class="col-xs-4" data-pathid="/abpresa/conteudo/remove/<?= $pratica->id ?>" data-msg="Pratica <?= $pratica->titulo_pratica ?>" onclick="modalRemove(this); return false;" style="color: #d63123" title="Excluir"><i class="fa fa-close"></i></a> 
                                             </td>
                                         </tr>
                                         
@@ -129,8 +128,8 @@
                         <div class="alert alert-danger">
                             <span>
                                 <a href="" style="color: red">
-                                <strong> Não Existem Boas Praticas Cadastradas. </strong>
-                                Cadastre uma nova Prática   &nbsp     
+                                <strong> Não existem boas praticas cadastradas. </strong>
+                                Cadastre uma nova prática   &nbsp     
                                 <i class="zpdi ti-plus"></i></a>
                             </span>
                         </div>

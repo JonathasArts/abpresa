@@ -14,7 +14,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
                     <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -45,7 +45,7 @@
                             ?>
                             </strong>
                             <div class="row text-right" style="padding: 0 1em;">
-                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
+                                <a href="/abpresa/conteudo/download/<?= $pratica->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
                                 <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
                             </div>
                         </div>
@@ -60,24 +60,35 @@
                     <div class="row">
                         <h1 class="text-center"><small><strong>Arquivos</strong></small></h1>
                         <!-- foreach dos arquivos  -->
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-md-4">
-                            <a data-fancybox="gallery" href="<?= $path.'/app/assets/img/example.png'?>" class="thumbnail" style="text-decoration:none;">
-                                <img src="<?= $path.'/app/assets/img/img_temp.svg' ?>" alt="...">
-                                <p class="text-center" style="margin:4px 0">titulo arquivo</p>
-                            </a>
-                        </div>
+                        <?php foreach ($arquivos_pratica as $arquivo) : ?>
+                            <?php $caminho = $path.str_replace("C:/xampp/htdocs/abpresa", "", str_replace("\\", "/", $arquivo->path_arquivo)); ?>
+                            <div class="col-xs-6 col-md-4">
+                                
+                                <!-- PDF  -->
+                                <?php if ($arquivo->tipo == "PDF") : ?>
+                                
+                                <div class="row text-center">
+                                    <a class="fancybox" data-fancybox-type="iframe" href="<?= $caminho ?>">
+                                        <img src="<?= $path.'/app/assets/img/pdf.png' ?>" alt="..." style="font-size:7em;color:red;margin-left:.2em;">
+                                        <p style="margin:4px 0;font-size:.7em;"><?= $arquivo->titulo_arquivo ?></p>
+                                    </a>
+                                </div>
+
+                                <!-- Imagem  -->
+                                <?php elseif ($arquivo->tipo == "JPG" || $arquivo->tipo == "PNG") : ?>
+                                
+                                <a data-fancybox="gallery" href="<?= $caminho ?>" class="thumbnail" style="text-decoration:none;">
+                                    <img src="<?= $caminho ?>" alt="...">
+                                    <div class="text-center" style="max-width:15em;font-size:.7em">
+                                        <p class="text-center" style="margin:4px 0"><?= $arquivo->titulo_arquivo ?></p>
+                                    </div>
+                                </a>
+
+                                <?php endif ?>
+
+                            </div>
+
+                        <?php endforeach ?>
                         <!-- END foreach dos arquivos  -->
                     </div>
                 </div>
@@ -93,7 +104,7 @@
                     Adicionar opção de comentários
                 </div>
                 <div class="col-xs-5 text-center">
-                    Lista de Boas praticas relacionadas
+                    Lista de boas praticas relacionadas
                 </div>
             <div class="col-xs-1"></div>
         </div>
