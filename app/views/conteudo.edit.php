@@ -6,7 +6,7 @@
             <div class="col-xs-10">
                 <a class="breadcrumb-item" href="/abpresa/">Home</a> / 
                 <a class="breadcrumb-item" href="/abpresa/dashboard/">Dashboard</a> / 
-                <a class="breadcrumb-item" href="/abpresa/dashboard/">Boas Praticas</a> / 
+                <a class="breadcrumb-item" href="/abpresa/dashboard/">Boas praticas</a> / 
                 <a class="breadcrumb-item active" href="/abpresa/conteudo/edit/<?= $pratica->id ?>">Editar</a>
             </div>
             
@@ -14,7 +14,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
                     <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -24,7 +24,7 @@
         <header class="page-header text-center" style="margin-top:-.4em">
             <div class="row">
                 <div class="col-xs-2"></div>
-                <div class="col-xs-8"><h1><span>Editar Conteúdo - Boa Prática</span></h1></div>
+                <div class="col-xs-8"><h1><span>Editar conteúdo - Boa prática</span></h1></div>
                 <div class="col-xs-2"><a href="/abpresa/dashboard/" class="btn btn-default">Cancelar</a></div>
             </div>
         </header>
@@ -32,7 +32,7 @@
         <div class="col-xs-1"></div>
         
         <div class="col-xs-10">
-            <form method="POST" action="/abpresa/conteudo/edit/">
+            <form method="POST" enctype="multipart/form-data" action="/abpresa/conteudo/edit/">
                 <div class="card card-login card-hidden" style="padding: 2em"> 
                     
                     <div class="content">
@@ -68,9 +68,7 @@
 
                         <div class="form-group col-xs-12">
                             <fieldset><legend><label for="" style="font-size:.7em;color:#abafb6;padding-left:1em;">Arquivos</label></legend>
-                                <div class="text-center">
-                                    <p>adicionar upload de arquivos aqui...</p><br/><br/>
-                                </div>
+                                <input id="upload_add_ed" name="arquivos[]" type="file" multiple class="file-loading">
                             </fieldset>
                         </div>
 

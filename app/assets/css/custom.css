@@ -62,3 +62,9 @@ th {
 .breadcrumb div a{
 	text-decoration:none !important;
 }
+
+.dropdown-menu-tag .dropdown-menu{
+	max-height: 15em !important;
+	min-width: 20em !important;
+    overflow: scroll !important;
+}

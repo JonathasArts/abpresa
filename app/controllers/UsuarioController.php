@@ -127,7 +127,7 @@ class UsuarioController {
                 $var = "<script>javascript:history.back(-1)</script>";
                 echo $var;
             } else {
-                if (Usuario::update($id, $nome, $username, $email, $tipo_usuario)) {
+                if (Usuario::update($id, $nome, $email, $username, $tipo_usuario)) {
                     $_SESSION['msg'] = "Usuário ".$nome." atualizado!";
                     header('Location: /abpresa/usuarios/');
                     exit;                    

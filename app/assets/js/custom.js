@@ -12,7 +12,6 @@ $("body").on("click",".accordion > header > a",function (e) {
     p.find(".accordion-content").slideToggle();
 });
 
-
 $(document).ready(function() {
     // MultiSelect
     $('#select-tags').multiselect();
@@ -71,6 +70,45 @@ $(document).ready(function() {
         $('#modal-cancel').iziModal('open');
     });
 
+    // fileinput
+    $("#upload_add").fileinput({
+        language: "pt-BR",
+        uploadUrl: "http://localhost/abpresa/app/uploads", // server upload action
+        uploadAsync: false,
+        maxFileCount: 10,
+        showBrowse: false,
+        showUpload: false,
+        showUploadedThumbs: false,
+        browseOnZoneClick: true,
+        // allowedPreviewTypes: null, // set to empty, null or false to disable preview for all types
+        fileActionSettings: {
+            showUpload: false
+        }
+    });
+
+    $("#upload_add_ed").fileinput({
+        language: "pt-BR",
+        uploadUrl: "http://localhost/abpresa/app/uploads", // server upload action
+        uploadAsync: false,
+        maxFileCount: 10,
+        showBrowse: false,
+        showUpload: false,
+        showUploadedThumbs: false,
+        browseOnZoneClick: true,
+        // allowedPreviewTypes: null, // set to empty, null or false to disable preview for all types
+        fileActionSettings: {
+            showUpload: false
+        }
+    });
+
+    $(".fancybox").fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+        iframe : {
+            preload: false
+        }
+    });
+
 });
 
 // Instancia e Carrega o modal de confirmação de exclusão
@@ -96,6 +134,7 @@ function modalRemove(bt){
 
     // event.preventDefault();
     $('#modal-remove').iziModal('open');
+    
 }
 
 function alertMSG(msg=null){
@@ -131,4 +170,5 @@ function alertERR(msg=null){
     $('#modal-err').iziModal('setTitle', msg);
     
     $('#modal-err').iziModal('open');
+
 }

@@ -27,7 +27,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
                         <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/logout/">Sair</a></li>
                     </ul>
@@ -35,7 +35,7 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li><a href="/abpresa/cadastro/">Criar conta</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/admin/">Login</a></li>
                     </ul>
@@ -76,9 +76,27 @@
                         <div class="col-xs-3 text-center">
                             <p class="title-col-pratica">OPÇÕES</p>
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar Boa Pratica"><i class="fa fa-download"></i></a>
-                                <a href="/abpresa/resultado/show/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Mais Detalhes"><i class="fa fa-eye"></i></a>
+                                <a href="/abpresa/conteudo/download/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Baixar boa pratica"><i class="fa fa-download"></i></a>
+                                <a href="/abpresa/resultado/show/<?= $p->id ?>" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Mais detalhes"><i class="fa fa-eye"></i></a>
                                 <a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compartilhar"><i class="fa fa-share-square-o"></i></a>
+                            </div><br/><br/>
+                            <p class="title-col-pratica">ARQUIVOS</p>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <?php foreach ($arquivos[$p->id] as $arquivo) : ?>
+                                    <a href="<?= $arquivo->path_arquivo ?>" title="<?= $arquivo->titulo_arquivo ?>" style="font-size:2em;text-decoration:none;">
+                                        <?php
+                                            switch ($arquivo->tipo) {
+                                                case 'PDF':
+                                                    echo "<i class='fa fa-file-pdf-o' aria-hidden='true' style='color:red'></i>";
+                                                    break;
+                                                
+                                                default:
+                                                    echo "<i class='fa fa-file-image-o' aria-hidden='true' style='color:#89AC90'></i>";
+                                                    break;
+                                            }
+                                        ?>
+                                    </a>
+                                <?php endforeach ?>
                             </div>
                         </div>
 
@@ -109,10 +127,10 @@
                                 <label for="categoria_id">Categoria: </label>
                                 <select name="categoria_id" class="form-control">
                                     <?php if (!empty($categoria_buscada)) : ?>
-                                        <option value="" >Escolha uma Categoria</option>
+                                        <option value="" >Escolha uma categoria</option>
                                         <option value="<?= $categoria_buscada->id ?>" selected="selected"><?= $categoria_buscada->titulo_categoria ?></option>
                                     <?php else : ?>
-                                        <option value="" selected="selected">Escolha uma Categoria</option>
+                                        <option value="" selected="selected">Escolha uma categoria</option>
                                     <?php endif ?>
                                     
                                     <?php foreach ($categorias as $categoria) : ?>
@@ -124,7 +142,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-xs-12" style="margin-bottom:1em;">
+                            <div class="col-xs-12 dropdown-menu-tag" style="margin-bottom:1em;">
                                 <label for="categoria_id">tags: </label>
                                 <div>
                                 <select name="tags[]" id="select-tags" class="selectpicker" multiple="multiple">

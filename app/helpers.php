@@ -57,4 +57,10 @@
 		return array_slice($itens, $inicio, $qtde);
 	}
 
+
+	function sanitizeString($texto) {
+		// return str_replace(" ","_",preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($texto))));
+		return preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($texto)));
+	}
+
 	

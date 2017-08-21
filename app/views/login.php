@@ -16,7 +16,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
                         <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                        <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/logout/">Sair</a></li>
                     </ul>
@@ -24,7 +24,7 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu text-center">
-                        <li><a href="/abpresa/cadastro/">Criar Conta</a></li>
+                        <li><a href="/abpresa/cadastro/">Criar conta</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/abpresa/admin/">Login</a></li>
                     </ul>
@@ -53,7 +53,7 @@
                             <input type="password" name="password" placeholder="senha" class="form-control" required>
                         </div>
                         <div class="form-group" style="margin-top: -1em; margin-bottom: 2em;">
-                            <small><a href="">Esqueceu a Senha?</a></small>
+                            <small><a href="">Esqueceu a senha?</a></small>
                         </div>
                     </div>
                     <div class="text-center">

@@ -3,6 +3,7 @@ namespace App\Controllers;
 use \App\Models\Pratica;
 use \App\Models\Categoria;
 use \App\Models\Tag;
+use \App\Models\Arquivo;
 
 class AppController { 
 
@@ -26,7 +27,7 @@ class AppController {
         $page = "dashboard";
         $allPraticas = Pratica::selectAll();
         $categorias = Categoria::selectAll();
-        $tags;
+        $tags = Array();
 
         $limit = 7; // Quantidade de registros por página
         $numpage = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -60,7 +61,7 @@ class AppController {
         $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : null;
         $tags_buscadas = isset($_POST['tags']) ? $_POST['tags'] : null;
         
-        // $arquivos; // pegar aquivos/link-arquivo para enviar aqui
+        $arquivos = Array();
         $categorias_das_praticas = Array();
         $tags = Array();
 
@@ -70,7 +71,7 @@ class AppController {
         $praticas = Pratica::find($palavra, $categoria_buscada, $tags_buscadas);
 
         foreach ($praticas as $p) {
-            // $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
+            $arquivos[$p->id] = Pratica::selectArquivosByPratica($p->id);
             $tags[$p->id] = Tag::selectTagsByPratica($p->id);
             $categorias_das_praticas[$p->id] = Categoria::selectByPratica($p->id);
         }
@@ -85,6 +86,7 @@ class AppController {
         $return['praticas'] = $praticas;
         $return['categorias'] = $categorias;
         $return['allTags'] = $allTags;
+        $return['arquivos'] = $arquivos;
 
         $_SESSION['return'] = $return;
 
@@ -98,8 +100,7 @@ class AppController {
             'praticas' => $praticas,
             'categorias' => $categorias,
         	'allTags' => $allTags,
-            // 'arquivos' => $arquivos,
-        	// pegar aquivos/link-arquivo para enviar aqui
+            'arquivos' => $arquivos,
         ]);
     }
  
@@ -110,6 +111,7 @@ class AppController {
         $pratica = Pratica::selectAll($id);
         $categoria_pratica = Categoria::selectAll($pratica->categorias_id);
         $tags_pratica = Tag::selectTagsByPratica($pratica->id);
+        $arquivos_pratica = Arquivo::selectArqsByPratica($pratica->id);
 
         \App\View::make('resultado.show', [
             'page' => $page,
@@ -117,6 +119,7 @@ class AppController {
             'pratica' => $pratica,
             'categoria_pratica' => $categoria_pratica,
             'tags_pratica' => $tags_pratica,
+            'arquivos_pratica' => $arquivos_pratica,
         ]);
     }
 
@@ -135,8 +138,7 @@ class AppController {
             'praticas' => $return['praticas'],
             'categorias' => $return['categorias'],
         	'allTags' => $return['allTags'],
-            // 'arquivos' => $arquivos,
-        	// pegar aquivos/link-arquivo para enviar aqui
+            'arquivos' => $return['arquivos'],
         ]);
     }
 	

@@ -14,7 +14,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu text-center">
                     <li><a href="/abpresa/usuarios/show/<?= $_SESSION['id'] ?>">Perfil</a></li>
-                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar Senha</a></li>
+                    <li><a href="/abpresa/usuarios/edit/senha/<?= $_SESSION['id'] ?>">Mudar senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/abpresa/logout/">Sair</a></li>
                 </ul>
@@ -24,7 +24,7 @@
         <header class="page-header text-center extra-top-pad">
             <div class="row">
                 <div class="col-xs-2"></div>
-                <div class="col-xs-8"><h1><span>Cadastrar Usuário</span></h1></div>
+                <div class="col-xs-8"><h1><span>Cadastrar usuário</span></h1></div>
                 <div class="col-xs-2"><a href="/abpresa/usuarios/" class="btn btn-default">Cancelar</a></div>
             </div>
         </header>
@@ -45,7 +45,7 @@
                             <input type="text" name="username" placeholder="usuario" class="form-control" required>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label>email</label>
+                            <label>Email</label>
                             <input type="email" name="email" placeholder="email@email.com" class="form-control" required>
                         </div>
                         
@@ -61,7 +61,7 @@
                             <input type="password" name="password" placeholder="senha" class="form-control" required>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label>Confirmação de Senha</label>
+                            <label>Confirmação de senha</label>
                             <input type="password" name="confirmPassword" placeholder="Confirmar Senha" class="form-control" required>
                         </div>
 
