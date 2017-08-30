@@ -41,11 +41,7 @@ práticas reconfiguráveis de ES para cenários específicos de projetos de soft
 
         Samyra Lara Ferreira de Almeida
 
-        Sérgio Campos da Silva
-
-        Thuany Alves Gomes da Silva
-        
-        Tiago Cesário Barbosa.   
+        Thuany Alves Gomes da Silva  
 
 ______________________________________________________________________
 
